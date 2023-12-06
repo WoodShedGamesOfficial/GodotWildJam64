@@ -1,13 +1,8 @@
 # GodotWildJam64
-A group submission to the Godot Wild Jam 64! We hope you find some cool features in our code and use them in yours!
-
-
 **TESTING BRANCH**
 
-
-
-
-
+Here we can absolutely fffUCk our game up but still have the functional main branch
+commit to your hearts delite, im on EST so have at it, whatever that means to you. 
 
 
 A group submission to the Godot Wild Jam 64! We hope you find some cool features in our code and use them in yours!
