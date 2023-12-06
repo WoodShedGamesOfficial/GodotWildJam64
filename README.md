@@ -4,7 +4,9 @@
 Here we can absolutely fffUCk our game up but still have the functional main branch
 commit to your hearts delite, im on EST so have at it, whatever that means to you. 
 
+I have an emty template for everyone to try out so we can build in a uniform structure to avoid "the black cat situation" from last jam.
 
+#/this just is a personal note, im using all this silesystem stuff later for other projects. 
 A group submission to the Godot Wild Jam 64! We hope you find some cool features in our code and use them in yours!
 
 To the Players: [insert games desription, controls, need-to-knows, and credits with prefered titles and links to everyones portfolios so we can all get jobs]
