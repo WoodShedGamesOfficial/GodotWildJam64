@@ -29,7 +29,7 @@ func _process(delta):
 		growth_rate -= delta
 		if (growth_rate < 0):
 			growth_rate = 0.5
-			if (health > 0):
+			if (health > 1):
 				health -= 1
 			else:
 				die()
