@@ -4,6 +4,7 @@ A group submission to the Godot Wild Jam 64! We hope you find some cool features
 
 Leave pretty blank till the group decides what the project is
 
+FilesSystems are a Go, GitRepo is avaliable for use and observation, the audience is informed of our show, and its almost time to begin! Enjoy the jame everyone and godspeed!
 
 
 
