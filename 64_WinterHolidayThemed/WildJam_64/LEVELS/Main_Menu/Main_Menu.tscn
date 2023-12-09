@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://r2w46qikxe74"]
+[gd_scene load_steps=3 format=3 uid="uid://r2w46qikxe74"]
+
+[ext_resource type="Shader" path="res://WildJam_64/ASSETS/Enviromental/Shaders/Test2DShaderVHS.gdshader" id="1_o05ym"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hbd4v"]
+shader = ExtResource("1_o05ym")
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -22,3 +27,13 @@ offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Main Menu"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Container" type="Container" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_hbd4v")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

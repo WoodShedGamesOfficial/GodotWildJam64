@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqthql80cjsxs"]
+[gd_scene load_steps=7 format=3 uid="uid://dqthql80cjsxs"]
 
 [ext_resource type="Script" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/PlayeScriptr.gd" id="1_tuyju"]
 
@@ -9,6 +9,12 @@ albedo_color = Color(0.219608, 1, 1, 1)
 material = SubResource("StandardMaterial3D_34wnd")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bj0j4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7so5"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ed1sa"]
+material = SubResource("StandardMaterial3D_w7so5")
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -53,3 +59,7 @@ render_target_update_mode = 4
 [node name="PlayerHUDCam" type="Camera3D" parent="PlayerOrigin/WorldCam/PlayerGUI/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 7.21784, 1.9285)
 cull_mask = 1047554
+
+[node name="AttackDirection" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.2, 0, -0.7)
+mesh = SubResource("BoxMesh_ed1sa")

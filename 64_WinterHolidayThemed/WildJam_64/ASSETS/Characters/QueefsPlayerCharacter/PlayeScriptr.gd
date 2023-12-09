@@ -45,5 +45,5 @@ func _physics_process(delta):
 
 
 func control_camera():
-	$PlayerOrigin.transform.basis.rotate_y(0.01)
+#	$PlayerOrigin.transform.basis.rotate_y(0.01)
 	pass
