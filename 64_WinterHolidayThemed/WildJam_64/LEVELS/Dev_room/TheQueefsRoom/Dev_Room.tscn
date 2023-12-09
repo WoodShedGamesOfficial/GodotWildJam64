@@ -1,0 +1,151 @@
+[gd_scene load_steps=14 format=3 uid="uid://buv8vyp1s76xr"]
+
+[ext_resource type="Material" uid="uid://c0txp1p4op3j1" path="res://WildJam_64/ASSETS/Enviromental/Materials/WhiteTiles.tres" id="1_4v2sd"]
+[ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="2_c8gxt"]
+[ext_resource type="PackedScene" uid="uid://bs3ukt1lpfdbi" path="res://WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="3_2r78u"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7cj46"]
+material = ExtResource("1_4v2sd")
+size = Vector2(500, 500)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_iieni"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vmi38"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4rvc7"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="Environment" id="Environment_a51fp"]
+volumetric_fog_enabled = true
+
+[sub_resource type="Curve" id="Curve_jjwil"]
+_data = [Vector2(0, 0.294737), 0.0, 0.0, 0, 0, Vector2(1, 0.0736842), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2hqnv"]
+curve = SubResource("Curve_jjwil")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cxbqv"]
+emission_shape = 3
+emission_box_extents = Vector3(25, 25, 25)
+direction = Vector3(1, 0, 0.5)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+scale_curve = SubResource("CurveTexture_2hqnv")
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gyieq"]
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_stkv4"]
+material = SubResource("StandardMaterial3D_gyieq")
+
+[node name="Dev_Room" type="Node3D"]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 522.0
+offset_top = 26.0
+offset_right = 601.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dev Room"
+
+[node name="Geometry" type="Node" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="Geometry"]
+mesh = SubResource("PlaneMesh_7cj46")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Floor/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_iieni")
+
+[node name="Blockout" type="Node" parent="Geometry"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry/Blockout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5.8, 6, 0.5, 0)
+mesh = SubResource("BoxMesh_vmi38")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Blockout/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Blockout/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4rvc7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Geometry/Blockout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5.8, -7, 0.5, 0)
+mesh = SubResource("BoxMesh_vmi38")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Blockout/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Blockout/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4rvc7")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Geometry/Blockout"]
+transform = Transform3D(-4.37114e-08, 0, -5.8, 0, 1, 0, 1, 0, -2.53526e-07, 3.8, 0.5, -4.6)
+mesh = SubResource("BoxMesh_vmi38")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Blockout/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Blockout/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4rvc7")
+
+[node name="Building" type="CSGCombiner3D" parent="Geometry/Blockout"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry/Blockout/Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 2, 0)
+size = Vector3(6, 4, 6)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Geometry/Blockout/Building"]
+transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 14.5, 2, 0)
+operation = 2
+size = Vector3(6, 4, 6)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Geometry/Blockout/Building"]
+transform = Transform3D(0.4275, 0, 0, 0, 0.4275, 0, 0, 0, 0.4275, 14.4713, 0.905832, 2.99181)
+operation = 2
+size = Vector3(6, 4, 6)
+
+[node name="Characters" type="Node" parent="."]
+
+[node name="Player" parent="Characters" instance=ExtResource("2_c8gxt")]
+
+[node name="ExeriorCamTEST" type="Camera3D" parent="Characters"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2, 5, 4)
+
+[node name="Lighting" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.866025, -0.25, -0.433013, 0.5, 0.433013, 0.75, 0, -0.866025, 0.5, 0, 6, 0)
+light_color = Color(0, 0, 0, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = SubResource("Environment_a51fp")
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="Snow" type="GPUParticles3D" parent="Effects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_cxbqv")
+draw_pass_1 = SubResource("QuadMesh_stkv4")
+
+[node name="Toys" type="Node" parent="."]
+
+[node name="BouncyBall" parent="Toys" instance=ExtResource("3_2r78u")]
+mass = 0.25
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
