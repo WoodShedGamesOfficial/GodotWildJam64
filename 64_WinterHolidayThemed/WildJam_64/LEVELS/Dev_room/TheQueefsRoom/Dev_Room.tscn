@@ -1,16 +1,12 @@
+[gd_scene load_steps=15 format=3 uid="uid://buv8vyp1s76xr"]
 
-[gd_scene load_steps=2 format=3 uid="uid://buv8vyp1s76xr"]
-
-[ext_resource type="PackedScene" uid="uid://3j23c47chjnm" path="res://WildJam_64/LEVELS/CRT Shader/crt_shader.tscn" id="1_xaj3a"]
-
-[gd_scene load_steps=14 format=3 uid="uid://btlwqo0pw7gk7"]
-
-[ext_resource type="Material" uid="uid://c0txp1p4op3j1" path="res://WildJam_64/ASSETS/Enviromental/Materials/WhiteTiles.tres" id="1_8pg5t"]
-[ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="2_wuu8m"]
-[ext_resource type="PackedScene" uid="uid://bs3ukt1lpfdbi" path="res://WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="3_eh2rw"]
+[ext_resource type="Material" uid="uid://c0txp1p4op3j1" path="res://WildJam_64/ASSETS/Enviromental/Materials/WhiteTiles.tres" id="1_4v2sd"]
+[ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="2_c8gxt"]
+[ext_resource type="PackedScene" uid="uid://bs3ukt1lpfdbi" path="res://WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="3_2r78u"]
+[ext_resource type="AudioStream" uid="uid://cymvww84mcbxp" path="res://WildJam_64/AUDIO/IdkWhatGoesHereIDontDoMusicWell/BeautifulNoise - Intensity by Design/BN_Intensity by Design_017 Tension by Brass 1.wav" id="4_cw4w4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7cj46"]
-material = ExtResource("1_8pg5t")
+material = ExtResource("1_4v2sd")
 size = Vector2(500, 500)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_iieni"]
@@ -50,7 +46,6 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_stkv4"]
 material = SubResource("StandardMaterial3D_gyieq")
 
-
 [node name="Dev_Room" type="Node3D"]
 
 [node name="Label" type="Label" parent="."]
@@ -66,9 +61,6 @@ offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Dev Room"
-
-
-[node name="CRT_Shader" parent="." instance=ExtResource("1_xaj3a")]
 
 [node name="Geometry" type="Node" parent="."]
 
@@ -128,7 +120,7 @@ size = Vector3(6, 4, 6)
 
 [node name="Characters" type="Node" parent="."]
 
-[node name="Player" parent="Characters" instance=ExtResource("2_wuu8m")]
+[node name="Player" parent="Characters" instance=ExtResource("2_c8gxt")]
 
 [node name="ExeriorCamTEST" type="Camera3D" parent="Characters"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2, 5, 4)
@@ -152,10 +144,10 @@ draw_pass_1 = SubResource("QuadMesh_stkv4")
 
 [node name="Toys" type="Node" parent="."]
 
-[node name="BouncyBall" parent="Toys" instance=ExtResource("3_eh2rw")]
+[node name="BouncyBall" parent="Toys" instance=ExtResource("3_2r78u")]
 mass = 0.25
 
 [node name="Audio" type="Node" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
-
+stream = ExtResource("4_cw4w4")
