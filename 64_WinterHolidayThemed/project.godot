@@ -10,6 +10,10 @@ config_version=5
 
 [application]
 
-config/name="GodotWildJam_64"
+config/name="64 Winter Holiday Themed"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="64 Winter Holiday Themed"
