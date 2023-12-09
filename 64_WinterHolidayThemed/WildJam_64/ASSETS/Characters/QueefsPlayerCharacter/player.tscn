@@ -20,34 +20,36 @@ mesh = SubResource("CapsuleMesh_i54pw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_bj0j4")
 
-[node name="WorldCam" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.642787, 0.766045, 0, -0.766045, 0.642787, 0, 6.61784, 3.6285)
-cull_mask = 1047553
-current = true
-
-[node name="PlayerGUI" type="Control" parent="WorldCam"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="WorldCam/PlayerGUI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SubViewport" type="SubViewport" parent="WorldCam/PlayerGUI/SubViewportContainer"]
-transparent_bg = true
-handle_input_locally = false
-render_target_update_mode = 4
-
-[node name="PlayerHUDCam" type="Camera3D" parent="WorldCam/PlayerGUI/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 7.21784, 1.9285)
-cull_mask = 1047554
-
 [node name="PlayerLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -1)
 light_color = Color(0.745098, 0.501961, 0, 1)
 light_energy = 0.5
 light_cull_mask = 4294966273
 shadow_enabled = true
+
+[node name="PlayerOrigin" type="Node3D" parent="."]
+
+[node name="WorldCam" type="Camera3D" parent="PlayerOrigin"]
+transform = Transform3D(1, 0, 0, 0, 0.642787, 0.766045, 0, -0.766045, 0.642787, 0, 6.61784, 3.6285)
+cull_mask = 1047553
+current = true
+
+[node name="PlayerGUI" type="Control" parent="PlayerOrigin/WorldCam"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PlayerOrigin/WorldCam/PlayerGUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="PlayerOrigin/WorldCam/PlayerGUI/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="PlayerHUDCam" type="Camera3D" parent="PlayerOrigin/WorldCam/PlayerGUI/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 7.21784, 1.9285)
+cull_mask = 1047554
