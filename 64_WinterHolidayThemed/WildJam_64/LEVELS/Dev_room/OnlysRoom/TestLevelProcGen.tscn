@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://ivclf2p5ugcq"]
+
+[ext_resource type="Script" path="res://WildJam_64/SCRIPTS/Generator.gd" id="1_8snfj"]
+[ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="1_p0c3u"]
+[ext_resource type="Material" uid="uid://d4ft30tldlv4r" path="res://WildJam_64/ASSETS/Enviromental/Particles/Snow.material" id="2_m5ta0"]
+[ext_resource type="PackedScene" uid="uid://bs3ukt1lpfdbi" path="res://WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="3_4sbnc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3teq"]
+albedo_color = Color(0.301961, 0.619608, 0.407843, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qj7mj"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_0tjii"]
+
+[node name="TestLevelProcGen" type="Node3D"]
+script = ExtResource("1_8snfj")
+land_mat = SubResource("StandardMaterial3D_f3teq")
+
+[node name="Terrain" type="Node" parent="."]
+
+[node name="Terrain" type="MeshInstance3D" parent="Terrain"]
+mesh = SubResource("ArrayMesh_qj7mj")
+
+[node name="Characters" type="Node" parent="."]
+
+[node name="Player" parent="Characters" instance=ExtResource("1_p0c3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.189234, 13.2764, 0.384444)
+
+[node name="Lighting" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, -0.982903, 0.184123, 0, -0.184123, -0.982903, 0, 35.3662, 0)
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="Snow" type="GPUParticles3D" parent="Effects"]
+amount = 128
+process_material = ExtResource("2_m5ta0")
+draw_pass_1 = SubResource("QuadMesh_0tjii")
+
+[node name="Toys" type="Node" parent="."]
+
+[node name="BouncyBall" parent="Toys" instance=ExtResource("3_4sbnc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.66838, 13.277, -2.01152)
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
