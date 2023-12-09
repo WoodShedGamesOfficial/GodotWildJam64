@@ -1,8 +1,3 @@
-
-[gd_scene load_steps=2 format=3 uid="uid://buv8vyp1s76xr"]
-
-[ext_resource type="PackedScene" uid="uid://3j23c47chjnm" path="res://WildJam_64/LEVELS/CRT Shader/crt_shader.tscn" id="1_xaj3a"]
-
 [gd_scene load_steps=14 format=3 uid="uid://btlwqo0pw7gk7"]
 
 [ext_resource type="Material" uid="uid://c0txp1p4op3j1" path="res://WildJam_64/ASSETS/Enviromental/Materials/WhiteTiles.tres" id="1_8pg5t"]
@@ -50,7 +45,6 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_stkv4"]
 material = SubResource("StandardMaterial3D_gyieq")
 
-
 [node name="Dev_Room" type="Node3D"]
 
 [node name="Label" type="Label" parent="."]
@@ -66,9 +60,6 @@ offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Dev Room"
-
-
-[node name="CRT_Shader" parent="." instance=ExtResource("1_xaj3a")]
 
 [node name="Geometry" type="Node" parent="."]
 
@@ -158,4 +149,3 @@ mass = 0.25
 [node name="Audio" type="Node" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
-
