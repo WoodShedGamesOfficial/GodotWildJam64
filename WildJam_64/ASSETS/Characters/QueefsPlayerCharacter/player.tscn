@@ -8,30 +8,38 @@ albedo_color = Color(0.219608, 1, 1, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i54pw"]
 material = SubResource("StandardMaterial3D_34wnd")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bj0j4"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7so5"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ed1sa"]
 material = SubResource("StandardMaterial3D_w7so5")
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bj0j4"]
+
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_tuyju")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Body" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
 mesh = SubResource("CapsuleMesh_i54pw")
+skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_bj0j4")
-
-[node name="PlayerLight" type="OmniLight3D" parent="."]
+[node name="PlayerLight" type="OmniLight3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -1)
 light_color = Color(0.745098, 0.501961, 0, 1)
 light_energy = 0.5
 light_cull_mask = 4294966273
 shadow_enabled = true
+
+[node name="AttackDirection" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.2, 0, -0.7)
+mesh = SubResource("BoxMesh_ed1sa")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bj0j4")
 
 [node name="PlayerOrigin" type="Node3D" parent="."]
 
@@ -61,7 +69,3 @@ transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 
 cull_mask = 1047554
 
 [node name="MouseCast" type="RayCast3D" parent="PlayerOrigin/WorldCam"]
-
-[node name="AttackDirection" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.2, 0, -0.7)
-mesh = SubResource("BoxMesh_ed1sa")
