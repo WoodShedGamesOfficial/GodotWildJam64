@@ -1,8 +1,21 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+@export var PLAYERSTATS = {
+	"Health" : 100,
+	"Mana" : 100,
+	"Stamina" : 100,
+	'WalkSpeed' : 4
+}
+
+@onready var health = PLAYERSTATS.Health
+@onready var mana = PLAYERSTATS.Mana
+@onready var stamina = PLAYERSTATS.Stamina
+@onready var walk_speed = PLAYERSTATS.WalkSpeed
+
+
 const JUMP_VELOCITY = 4.5
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -45,5 +58,9 @@ func _physics_process(delta):
 
 
 func control_camera():
+	var mousePos = get_viewport().get_mouse_position()
+	var camera = $PlayerOrigin/WorldCam
+	var mouseCast = $PlayerOrigin/WorldCam/MouseCast
+	var rayOrigin = camera.project_ray_origin(mousePos)
 #	$PlayerOrigin.transform.basis.rotate_y(0.01)
 	pass

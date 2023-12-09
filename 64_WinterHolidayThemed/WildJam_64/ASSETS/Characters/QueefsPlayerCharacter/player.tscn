@@ -60,6 +60,8 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 7.21784, 1.9285)
 cull_mask = 1047554
 
+[node name="MouseCast" type="RayCast3D" parent="PlayerOrigin/WorldCam"]
+
 [node name="AttackDirection" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.2, 0, -0.7)
 mesh = SubResource("BoxMesh_ed1sa")
