@@ -1,0 +1,72 @@
+
+
+the ASSETS folder is reserved solely for files that are READY and directly interacted with,
+either in the editor or in-game.
+
+Enviromental: includes [Decor, MeshLibraries, tilemaps, and anything the player 
+directly interacts with in its "final state"] anything thats ready to be used 
+in-game for artistic purpouses
+
+Characters: Finished, ready to play with cahracters. Each new character needs to 
+be in its own folder
+
+Toys: anything the player has control over its behavior. I.E: a gun, the player
+ chooses what to shoot with it, a ball they bounce it, etc.. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(Im low key digging this folder settup. I'm going to save a copy of it for next time
+start a new project.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#/im high as shit, making labels for everything

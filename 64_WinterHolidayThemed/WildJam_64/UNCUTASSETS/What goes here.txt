@@ -1,0 +1,9 @@
+The UNCUTASSETS folder is probably going to look like a horrid nightmare
+ when we're done, but this is where you should drop any raw imports and try to
+avoid too many "Subfolders" that opens us up to a risk of file corruption if 
+something gets moved in the FileSystem. 
+
+its okay to just drag and drop directly into the UNCUTASSETS folder, not everything 
+needs an individual folder (like a .png of a cactus), but if you'd like to make your own individual 
+folder that'd be a good way to keep track of everything you contributed to the project 
+so far!
