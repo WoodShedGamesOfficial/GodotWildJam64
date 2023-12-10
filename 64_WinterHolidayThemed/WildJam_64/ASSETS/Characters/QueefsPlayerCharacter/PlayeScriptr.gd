@@ -21,10 +21,12 @@ extends CharacterBody3D
 @onready var manamax = mana
 @onready var staminamax = stamina
 @onready var crt_shader = $PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader
+@onready var pause_menu = $PlayerOrigin/WorldCam/PlayerGUI/pause_menu
 
 #Sprinting
 var is_sprinting = false
 var speed = walk_speed
+var game_is_paused = false
 
 
 const JUMP_VELOCITY = 4.5
@@ -117,6 +119,8 @@ func _process(delta):
 	$PlayerOrigin/WorldCam/PlayerGUI/HealthBar.value = health
 	$PlayerOrigin/WorldCam/PlayerGUI/ManaBar.value = mana
 	$PlayerOrigin/WorldCam/PlayerGUI/StaminaBar.value = stamina
+	
+	
 	pass
 	
 	
