@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bayh4bn22h6n4"
+path="res://.godot/imported/SM_Env_Rock_02_Snow.obj-66080f5775174f7d87d6202c4edb19c3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/SM_Env_Rock_02_Snow.obj-66080f5775174f7d87d6202c4edb19c3.mesh"]
+
+source_file="res://WildJam_64/ASSETS/Enviromental/Rocks/SM_Env_Rock_02_Snow.obj"
+dest_files=["res://.godot/imported/SM_Env_Rock_02_Snow.obj-66080f5775174f7d87d6202c4edb19c3.mesh", "res://.godot/imported/SM_Env_Rock_02_Snow.obj-66080f5775174f7d87d6202c4edb19c3.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
