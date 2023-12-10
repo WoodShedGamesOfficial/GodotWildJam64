@@ -1,6 +1,6 @@
-#<<<<<<< TheQueefOfEngland-patch-1
+
 when did I start doing this? why am I doing this? _who tf are you people_
-#=======
+
 # GodotWildJam64
 **TESTING BRANCH**
 
@@ -22,4 +22,6 @@ to other devs: We hope you like our project and can find some cool code and artw
 Credits:
 
 Team of Contributers:
-#>>>>>>> TESTING
+
+This is the last stable branch of Testing, just incase we wreck the test branch
+
