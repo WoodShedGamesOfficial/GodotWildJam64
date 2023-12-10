@@ -1,9 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://ivclf2p5ugcq"]
+[gd_scene load_steps=17 format=3 uid="uid://ivclf2p5ugcq"]
 
 [ext_resource type="Script" path="res://WildJam_64/SCRIPTS/Generator.gd" id="1_8snfj"]
-[ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="1_p0c3u"]
+[ext_resource type="PackedScene" uid="uid://dunk8pewfy6rh" path="res://WildJam_64/ASSETS/Enviromental/Town/Town.res" id="2_ayub6"]
+[ext_resource type="PackedScene" uid="uid://cuvw7cifl43gb" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player2.tscn" id="2_juxyf"]
 [ext_resource type="Material" uid="uid://d4ft30tldlv4r" path="res://WildJam_64/ASSETS/Enviromental/Particles/Snow.material" id="2_m5ta0"]
+[ext_resource type="PackedScene" uid="uid://dr1e1d6j23pvw" path="res://WildJam_64/ASSETS/Enviromental/Rocks/rock.res" id="2_rqj1q"]
 [ext_resource type="PackedScene" uid="uid://bs3ukt1lpfdbi" path="res://WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="3_4sbnc"]
+[ext_resource type="PackedScene" uid="uid://dfttfshl5lcco" path="res://WildJam_64/ASSETS/Enviromental/Trees/tree.res" id="3_csfqq"]
 
 [sub_resource type="Gradient" id="Gradient_1578h"]
 offsets = PackedFloat32Array(0, 0.382716, 0.987654)
@@ -56,7 +59,10 @@ normal_texture = SubResource("NoiseTexture2D_jt2yo")
 
 [node name="TestLevelProcGen" type="Node3D"]
 script = ExtResource("1_8snfj")
-tree_count = 100
+rock = ExtResource("2_rqj1q")
+tree = ExtResource("3_csfqq")
+tree_count = 5000
+town = ExtResource("2_ayub6")
 land_mat = SubResource("StandardMaterial3D_waa6a")
 
 [node name="Terrain" type="Node" parent="."]
@@ -66,8 +72,8 @@ mesh = SubResource("ArrayMesh_qj7mj")
 
 [node name="Characters" type="Node" parent="."]
 
-[node name="Player" parent="Characters" instance=ExtResource("1_p0c3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.189234, 13.2764, 0.384444)
+[node name="Player2" parent="Characters" instance=ExtResource("2_juxyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.26278, 10.4985, 0)
 
 [node name="Lighting" type="Node" parent="."]
 

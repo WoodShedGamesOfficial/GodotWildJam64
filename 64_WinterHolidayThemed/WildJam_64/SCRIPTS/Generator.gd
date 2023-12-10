@@ -5,33 +5,35 @@ extends Node3D
 var current_seed = 0
 
 #Procedurally Placed Item Variables:
-@export var rock : PackedScene = preload("res://WildJam_64/ASSETS/Enviromental/Rocks/rock.res")
-@export var rock_count = 30
-@export var tree : PackedScene = preload("res://WildJam_64/ASSETS/Enviromental/Trees/tree.res")
-@export var tree_count = 50
+@export var rock : PackedScene 
+@export var rock_count = 500
+@export var tree : PackedScene 
+@export var tree_count = 1000
 @export var town : PackedScene
 @export var town_count = 1
 
 #Environment Variables:
 @onready var terrain = $Terrain/Terrain
-@export var world_size = 700
+@export var world_size = 1000
 @export var subdivisions = 20
 var complete_land = false
 var offset = Vector3(0,2.5,0) 
 #Material Exports:
 @export var land_mat : Material
 
-
 #Forced Max World Size Constants
-const MIN_X = -250
-const MAX_X = 250
-const MIN_Z = -250
-const MAX_Z = 250
+const MIN_X = -1000
+const MAX_X = 1000
+const MIN_Z = -1000
+const MAX_Z = 1000
 const MAX_HEIGHT = 10
 
-func _ready():
+func set_seed(val:String)->void:
 	current_seed = Seed.hash()
 	seed(current_seed)
+
+func _ready():
+	set_seed(Seed)
 	generate_world()
 
 func _process(delta):
@@ -43,24 +45,37 @@ func _process(delta):
 		complete_land = false
 
 func generate_trees():
+	var tree_seed = Seed.hash()
+	seed(tree_seed*25.129873)
 	for i in tree_count:
 		var treei = tree.instantiate()
 		add_child(treei)
-		var pos = Vector3(randf_range(MIN_X, MAX_X),100,randf_range(MIN_Z,MAX_Z))
+		var pos = Vector3(randf_range(MIN_X, MAX_X),500,randf_range(MIN_Z,MAX_Z))
 		var fnl_pos = get_down_ray(pos)
+		var rot = Vector3(0,randf_range(0,360),0)
 		treei.global_transform.origin = fnl_pos
+		treei.rotation_degrees = rot
+		#print("Tree Location")
+		#print(fnl_pos)
 
 
 func generate_rocks():
+	var rock_seed = Seed.hash()
+	seed(rock_seed*91.1237913)
 	for i in rock_count:
 		var rocki = rock.instantiate()
 		add_child(rocki)
-		var pos = Vector3(randf_range(MIN_X, MAX_X),100,randf_range(MIN_Z,MAX_Z))
+		var pos = Vector3(randf_range(MIN_X, MAX_X),500,randf_range(MIN_Z,MAX_Z))
 		var fnl_pos = get_down_ray(pos)
+		var rot = Vector3(0,randf_range(0,360),0)
 		rocki.global_transform.origin = fnl_pos
-		
+		rocki.rotation_degrees = rot
+		#print("Rock Location")
+		#print(fnl_pos)
 
 func generate_town():
+	var town_seed = Seed.hash()
+	seed(town_seed*81.1237913)
 	pass
 
 func get_down_ray(pos: Vector3) -> Vector3:
@@ -77,6 +92,7 @@ func get_down_ray(pos: Vector3) -> Vector3:
 		return pos
 
 func generate_world():
+	set_seed(Seed)
 	var amesh = ArrayMesh.new()
 	var mesh = PlaneMesh.new()
 	var mdt = MeshDataTool.new()
