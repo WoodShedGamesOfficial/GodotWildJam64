@@ -6,7 +6,7 @@ extends CharacterBody3D
 	"HealthMax" : 100,
 	"Mana" : 100,
 	"Stamina" : 100,
-	'WalkSpeed' : 4
+	'WalkSpeed' : 20
 }
 
 @onready var health = PLAYERSTATS.Health
