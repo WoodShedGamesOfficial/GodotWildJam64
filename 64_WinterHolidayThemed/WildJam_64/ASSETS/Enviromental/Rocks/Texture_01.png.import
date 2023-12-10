@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b03w8rqei1cwo"
-path.s3tc="res://.godot/imported/texture_08.png-5f2f64b66b02ebaa7b2b2c62529bbb11.s3tc.ctex"
+uid="uid://1v6ljp1ar08c"
+path.s3tc="res://.godot/imported/Texture_01.png-d596453d43c00058187cd8e8f36abcd5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://WildJam_64/UNCUTASSETS/textures/texture_08.png"
-dest_files=["res://.godot/imported/texture_08.png-5f2f64b66b02ebaa7b2b2c62529bbb11.s3tc.ctex"]
+source_file="res://WildJam_64/ASSETS/Enviromental/Rocks/Texture_01.png"
+dest_files=["res://.godot/imported/Texture_01.png-d596453d43c00058187cd8e8f36abcd5.s3tc.ctex"]
 
 [params]
 
