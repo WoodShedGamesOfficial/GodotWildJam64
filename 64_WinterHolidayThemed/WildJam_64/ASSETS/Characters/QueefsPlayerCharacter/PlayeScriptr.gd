@@ -1,16 +1,14 @@
 extends CharacterBody3D
-@onready var crt_shader = $PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader
+
 
 @export var PLAYERSTATS = {
 	"Health" : 100,
-	"HealthMax" : 100,
 	"Mana" : 100,
 	"Stamina" : 100,
 	'WalkSpeed' : 4
 }
 
 @onready var health = PLAYERSTATS.Health
-@onready var healthmax = PLAYERSTATS.HealthMax
 @onready var mana = PLAYERSTATS.Mana
 @onready var stamina = PLAYERSTATS.Stamina
 @onready var walk_speed = PLAYERSTATS.WalkSpeed
@@ -47,9 +45,12 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * walk_speed
 		velocity.z = direction.z * walk_speed
+		# rotate player based on direction
+		$Body.rotation.y = atan2(-velocity.x,-velocity.z)
 	else:
 		velocity.x = move_toward(velocity.x, 0, walk_speed)
 		velocity.z = move_toward(velocity.z, 0, walk_speed)
+	
 	
 	
 	
@@ -66,7 +67,3 @@ func control_camera():
 	var rayOrigin = camera.project_ray_origin(mousePos)
 #	$PlayerOrigin.transform.basis.rotate_y(0.01)
 	pass
-	
-func _process(delta):
-	#When player's health is low, the CRT_Shader gets stronger
-	crt_shader.material.set_shader_parameter("crt_white_noise", 1.0 - (float(health) / float(healthmax)))
