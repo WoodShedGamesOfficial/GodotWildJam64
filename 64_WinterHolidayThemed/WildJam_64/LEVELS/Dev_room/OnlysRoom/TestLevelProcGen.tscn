@@ -1,12 +1,54 @@
-[gd_scene load_steps=8 format=3 uid="uid://ivclf2p5ugcq"]
+[gd_scene load_steps=14 format=3 uid="uid://ivclf2p5ugcq"]
 
 [ext_resource type="Script" path="res://WildJam_64/SCRIPTS/Generator.gd" id="1_8snfj"]
 [ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="1_p0c3u"]
 [ext_resource type="Material" uid="uid://d4ft30tldlv4r" path="res://WildJam_64/ASSETS/Enviromental/Particles/Snow.material" id="2_m5ta0"]
 [ext_resource type="PackedScene" uid="uid://bs3ukt1lpfdbi" path="res://WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="3_4sbnc"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3teq"]
-albedo_color = Color(0.301961, 0.619608, 0.407843, 1)
+[sub_resource type="Gradient" id="Gradient_1578h"]
+offsets = PackedFloat32Array(0, 0.382716, 0.987654)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.802469, 0.802469, 0.802469, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_00r5d"]
+seed = 600
+frequency = 0.0121
+fractal_type = 2
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 27.305
+domain_warp_fractal_type = 2
+domain_warp_fractal_octaves = 2
+domain_warp_fractal_lacunarity = 4.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_spp32"]
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 1.0
+bump_strength = 6.0
+color_ramp = SubResource("Gradient_1578h")
+noise = SubResource("FastNoiseLite_00r5d")
+
+[sub_resource type="Gradient" id="Gradient_urt4x"]
+offsets = PackedFloat32Array(0, 0.135802, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.654321, 0.654321, 0.654321, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s161s"]
+seed = 235
+fractal_type = 3
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jt2yo"]
+seamless = true
+seamless_blend_skirt = 1.0
+as_normal_map = true
+color_ramp = SubResource("Gradient_urt4x")
+noise = SubResource("FastNoiseLite_s161s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_waa6a"]
+albedo_texture = SubResource("NoiseTexture2D_spp32")
+normal_enabled = true
+normal_scale = 0.15
+normal_texture = SubResource("NoiseTexture2D_jt2yo")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qj7mj"]
 
@@ -14,7 +56,8 @@ albedo_color = Color(0.301961, 0.619608, 0.407843, 1)
 
 [node name="TestLevelProcGen" type="Node3D"]
 script = ExtResource("1_8snfj")
-land_mat = SubResource("StandardMaterial3D_f3teq")
+tree_count = 100
+land_mat = SubResource("StandardMaterial3D_waa6a")
 
 [node name="Terrain" type="Node" parent="."]
 
@@ -31,13 +74,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.189234, 13.2764, 0.384444)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
 transform = Transform3D(1, 0, 0, 0, -0.982903, 0.184123, 0, -0.184123, -0.982903, 0, 35.3662, 0)
 
-[node name="Effects" type="Node" parent="."]
-
-[node name="Snow" type="GPUParticles3D" parent="Effects"]
-amount = 128
-process_material = ExtResource("2_m5ta0")
-draw_pass_1 = SubResource("QuadMesh_0tjii")
-
 [node name="Toys" type="Node" parent="."]
 
 [node name="BouncyBall" parent="Toys" instance=ExtResource("3_4sbnc")]
@@ -46,3 +82,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.66838, 13.277, -2.01152)
 [node name="Audio" type="Node" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="Snow" type="GPUParticles3D" parent="Effects"]
+amount = 128
+process_material = ExtResource("2_m5ta0")
+draw_pass_1 = SubResource("QuadMesh_0tjii")
