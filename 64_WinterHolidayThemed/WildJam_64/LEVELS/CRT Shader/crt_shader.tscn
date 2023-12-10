@@ -23,8 +23,5 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="Container"]
 handle_input_locally = false
-<<<<<<< Updated upstream
-=======
 size = Vector2i(1152, 648)
->>>>>>> Stashed changes
 render_target_update_mode = 4
