@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://c0txp1p4op3j1" path="res://WildJam_64/ASSETS/Enviromental/Materials/WhiteTiles.tres" id="1_yslad"]
 [ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="2_n765u"]
-[ext_resource type="Material" path="res://WildJam_64/ASSETS/Enviromental/Particles/Snow.material" id="3_b6bn2"]
+[ext_resource type="Material" uid="uid://d4ft30tldlv4r" path="res://WildJam_64/ASSETS/Enviromental/Particles/Snow.material" id="3_b6bn2"]
 [ext_resource type="PackedScene" uid="uid://bs3ukt1lpfdbi" path="res://WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="4_5k1fv"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7cj46"]
@@ -105,13 +105,6 @@ size = Vector3(6, 4, 6)
 [node name="Characters" type="Node" parent="."]
 
 [node name="Player" parent="Characters" instance=ExtResource("2_n765u")]
-PLAYERSTATS = {
-"Health": 100,
-"HealthMax": 100,
-"Mana": 100,
-"Stamina": 100,
-"WalkSpeed": 4
-}
 
 [node name="ExeriorCamTEST" type="Camera3D" parent="Characters"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2, 5, 4)
@@ -119,8 +112,9 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 [node name="Lighting" type="Node" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(0.866025, -0.25, -0.433013, 0.5, 0.433013, 0.75, 0, -0.866025, 0.5, 0, 6, 0)
-light_color = Color(0, 0, 0, 1)
+transform = Transform3D(0.866025, -0.25, -0.433013, 0.390041, 0.879638, 0.272221, 0.312839, -0.404643, 0.859299, -1.00417, 6, 0)
+light_color = Color(0.870588, 0.870588, 0.870588, 1)
+light_energy = 3.101
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
 environment = SubResource("Environment_a51fp")

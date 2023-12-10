@@ -1,19 +1,22 @@
 extends CharacterBody3D
-@onready var crt_shader = $PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader
+
 
 @export var PLAYERSTATS = {
 	"Health" : 100,
-	"HealthMax" : 100,
-	"Mana" : 100,
-	"Stamina" : 100,
+	"Mana" : 100.0,
+	"Stamina" : 100.0,
 	'WalkSpeed' : 4
 }
 
 @onready var health = PLAYERSTATS.Health
-@onready var healthmax = PLAYERSTATS.HealthMax
 @onready var mana = PLAYERSTATS.Mana
 @onready var stamina = PLAYERSTATS.Stamina
 @onready var walk_speed = PLAYERSTATS.WalkSpeed
+
+@onready var healthmax = health
+@onready var manamax = mana
+@onready var staminamax = stamina
+@onready var crt_shader = $PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader
 
 
 const JUMP_VELOCITY = 4.5
@@ -23,10 +26,18 @@ const JUMP_VELOCITY = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
+func _ready():
+	$PlayerOrigin/WorldCam/PlayerGUI/HealthBar.value = health
+	$PlayerOrigin/WorldCam/PlayerGUI/ManaBar.value = mana
+	$PlayerOrigin/WorldCam/PlayerGUI/StaminaBar.value = stamina
+	pass
+	
 func _input(event):
 	if InputEventMouseMotion:
 		control_camera() #/ takes player mouse input for camera control
 	
+	
+	set_player_stats(event)
 	
 	pass
 
@@ -68,5 +79,25 @@ func control_camera():
 	pass
 	
 func _process(delta):
+	report_to_director()
 	#When player's health is low, the CRT_Shader gets stronger
 	crt_shader.material.set_shader_parameter("crt_white_noise", 1.0 - (float(health) / float(healthmax)))
+	$PlayerOrigin/WorldCam/PlayerGUI/HealthBar.value = health
+	$PlayerOrigin/WorldCam/PlayerGUI/ManaBar.value = mana
+	$PlayerOrigin/WorldCam/PlayerGUI/StaminaBar.value = stamina
+	pass
+	
+	
+
+func report_to_director():
+	TheDirector.player_health = health
+	TheDirector.player_mana = mana
+	TheDirector.player_stamina = stamina
+	pass
+	
+func set_player_stats(event):
+	if Input.is_action_just_pressed("Interact"):
+		health -= 5
+		mana -= 3
+		stamina -= 2
+	pass

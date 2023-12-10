@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="GodotWildJam_64"
+run/main_scene="res://WildJam_64/LEVELS/Main_Menu/Main_Menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
-[display]
+[autoload]
 
-window/size/mode=3
+TheDirector="*res://WildJam_64/SCRIPTS/TheDirector.gd"
 
 [input]
 

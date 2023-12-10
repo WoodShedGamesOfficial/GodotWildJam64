@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://ynqoixfohsfg"]
+
+[ext_resource type="Script" path="res://WildJam_64/LEVELS/Dev_room/JakesRoom/PlayerGUI.gd" id="1_1vjih"]
+[ext_resource type="Shader" path="res://WildJam_64/LEVELS/CRT Shader/CRT.gdshader" id="1_aqdot"]
+[ext_resource type="Texture2D" uid="uid://bynqtihrbtbtd" path="res://WildJam_64/UNCUTASSETS/textures/StatBar.png" id="2_cw58p"]
+[ext_resource type="Texture2D" uid="uid://xd8nudm2nnox" path="res://WildJam_64/UNCUTASSETS/textures/StatBarOutline.png" id="3_bvf1h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kj6rk"]
+shader = ExtResource("1_aqdot")
+shader_parameter/crt_brightness = 1.0
+shader_parameter/crt_ghost = 5.0
+shader_parameter/crt_grid = 0.4
+shader_parameter/crt_white_noise = 0.0
+shader_parameter/crt_curve = 0.05
+
+[node name="PlayerGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1vjih")
+
+[node name="CRT_Shader" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_kj6rk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CRT_Shader"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="PlayerHUDCam" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 7.21784, 1.9285)
+cull_mask = 1047554
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.104, 0.179051)
+value = 50.0
+texture_under = ExtResource("2_cw58p")
+texture_over = ExtResource("3_bvf1h")
+texture_progress = ExtResource("2_cw58p")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="ManaBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 500.0
+offset_bottom = 528.0
+scale = Vector2(1.104, 0.179051)
+value = 50.0
+texture_under = ExtResource("2_cw58p")
+texture_over = ExtResource("3_bvf1h")
+texture_progress = ExtResource("2_cw58p")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(0, 0, 1, 1)
+
+[node name="StaminaBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 500.0
+offset_bottom = 556.0
+scale = Vector2(1.104, 0.179051)
+value = 50.0
+texture_under = ExtResource("2_cw58p")
+texture_over = ExtResource("3_bvf1h")
+texture_progress = ExtResource("2_cw58p")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(1, 1, 0, 1)

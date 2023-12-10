@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy80450kheod3"]
+
+[ext_resource type="Texture2D" uid="uid://bynqtihrbtbtd" path="res://WildJam_64/UNCUTASSETS/textures/StatBar.png" id="1_ljcce"]
+[ext_resource type="Texture2D" uid="uid://xd8nudm2nnox" path="res://WildJam_64/UNCUTASSETS/textures/StatBarOutline.png" id="2_8wrxc"]
+
+[node name="progress_bar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+texture_under = ExtResource("1_ljcce")
+texture_over = ExtResource("2_8wrxc")
+texture_progress = ExtResource("1_ljcce")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(1, 0, 0, 1)

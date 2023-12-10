@@ -1,9 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://r2w46qikxe74"]
-
-[ext_resource type="Shader" path="res://WildJam_64/ASSETS/Enviromental/Shaders/Test2DShaderVHS.gdshader" id="1_o05ym"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hbd4v"]
-shader = ExtResource("1_o05ym")
+[gd_scene format=3 uid="uid://r2w46qikxe74"]
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -12,7 +7,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -27,8 +21,3 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[connection signal="pressed" from="ButtonContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="ButtonContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="ButtonContainer/Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="ButtonContainer/Exit" to="." method="_on_exit_pressed"]
