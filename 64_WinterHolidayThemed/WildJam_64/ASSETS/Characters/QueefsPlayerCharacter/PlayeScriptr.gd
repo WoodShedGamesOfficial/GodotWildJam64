@@ -5,18 +5,26 @@ extends CharacterBody3D
 	"Health" : 100,
 	"Mana" : 100.0,
 	"Stamina" : 100.0,
-	'WalkSpeed' : 4
+	'WalkSpeed' : 4,
+	'SprintSpeed' : 12,
+	'SneakSpeed' : 2
 }
 
 @onready var health = PLAYERSTATS.Health
 @onready var mana = PLAYERSTATS.Mana
 @onready var stamina = PLAYERSTATS.Stamina
 @onready var walk_speed = PLAYERSTATS.WalkSpeed
+@onready var sprint_speed = PLAYERSTATS.SprintSpeed
+@onready var sneak_speed = PLAYERSTATS.SneakSpeed
 
 @onready var healthmax = health
 @onready var manamax = mana
 @onready var staminamax = stamina
 @onready var crt_shader = $PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader
+
+#Sprinting
+var is_sprinting = false
+var speed = walk_speed
 
 
 const JUMP_VELOCITY = 4.5
@@ -47,12 +55,21 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		
+	# Handle Sprint
+	if Input.is_action_just_pressed("Toggle Sprint"):
+		if stamina >= 1:
+			toggle_sprint()
+	
+	# Handle Sneak
+	if Input.is_action_just_pressed("Toggle Sneak"):
+		toggle_sneak()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
@@ -62,7 +79,9 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, walk_speed)
 		velocity.z = move_toward(velocity.z, 0, walk_speed)
 	
-	
+	# Handle Jaunt
+	if Input.is_action_just_pressed("Cast"):
+		jaunt()
 	
 	move_and_slide()
 	
@@ -81,6 +100,19 @@ func control_camera():
 func _process(delta):
 	report_to_director()
 	#When player's health is low, the CRT_Shader gets stronger
+	
+	#HP Regen, MP Regen, and Stamina Regen
+	regen_health()
+	regen_mana()
+	#Sprinting drains stamina when active
+	if is_sprinting:
+		stamina -= 1.0
+		if stamina < 1.0:
+			stamina = 0.0
+			stop_sprinting()
+	else:
+		regen_stamina()
+	#Update Shader and UI
 	crt_shader.material.set_shader_parameter("crt_white_noise", 1.0 - (float(health) / float(healthmax)))
 	$PlayerOrigin/WorldCam/PlayerGUI/HealthBar.value = health
 	$PlayerOrigin/WorldCam/PlayerGUI/ManaBar.value = mana
@@ -101,3 +133,67 @@ func set_player_stats(event):
 		mana -= 3
 		stamina -= 2
 	pass
+
+func hurt(damage):
+	health -= damage
+	#check if dead
+	if health >= 0:
+		die()
+		pass
+		
+	pass
+	
+func die():
+	
+	pass
+	
+func stop_sprinting():
+	is_sprinting = false
+	walk_speed = PLAYERSTATS.WalkSpeed
+
+func toggle_sprint():
+	# Check if we are sprinting, if we are, stop
+	if is_sprinting:
+		stop_sprinting()
+	else:
+		is_sprinting = true
+		walk_speed = sprint_speed
+	#If we aren't sprinting, start
+	
+	pass
+	
+
+func toggle_sneak():
+		# Check if we are sneaking, if we are, stop
+	
+	#If we aren't sneaking, start
+	
+	pass
+	
+func regen_health():
+	if health < PLAYERSTATS.Health:
+		health += 1
+	pass
+	
+func regen_mana():
+	if mana < PLAYERSTATS.Mana:
+		mana += 1.0
+	pass
+	
+func regen_stamina():
+	if stamina < PLAYERSTATS.Stamina:
+		stamina += 1.0
+	pass
+	
+
+func attack():
+	
+	pass
+#When the player eats something, regain health, mana, and stamina
+func devour():
+	
+	pass
+	
+func jaunt():
+	self.position.z -= 1
+
