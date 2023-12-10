@@ -1,4 +1,5 @@
 extends CharacterBody3D
+
 @onready var crt_shader = $PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader
 @export var PLAYERSTATS = {
 	"Health" : 100,
@@ -63,6 +64,9 @@ func _physics_process(delta):
 	pass
 
 
+func hurt(damage):
+	health -= damage
+
 func control_camera():
 	var mousePos = get_viewport().get_mouse_position()
 	var camera = $PlayerOrigin/WorldCam
@@ -70,9 +74,6 @@ func control_camera():
 	var rayOrigin = camera.project_ray_origin(mousePos)
 #	$PlayerOrigin.transform.basis.rotate_y(0.01)
 	pass
-	
-#func damage(severity):
-#	pass
 
 func _process(delta):
 	#When player's health is low, the CRT_Shader gets stronger
