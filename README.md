@@ -1,3 +1,6 @@
+
+when did I start doing this? why am I doing this? _who tf are you people_
+
 # GodotWildJam64
 **TESTING BRANCH**
 
@@ -14,3 +17,11 @@ To the Players: [insert games desription, controls, need-to-knows, and credits w
 to the devs: Please keep all changes and additions you make on your personal branches, and anything you want to add, please commit to the TESTING branch and let everyone know on the server so we don't break the final product.
 
 to other devs: We hope you like our project and can find some cool code and artwork from our fantastic team and good luck with your projects!
+
+
+Credits:
+
+Team of Contributers:
+
+This is the last stable branch of Testing, just incase we wreck the test branch
+
