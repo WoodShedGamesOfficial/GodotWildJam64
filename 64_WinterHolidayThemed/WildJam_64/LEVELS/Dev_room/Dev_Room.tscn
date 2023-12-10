@@ -1,6 +1,8 @@
-[gd_scene format=3 uid="uid://buv8vyp1s76xr"]
+[gd_scene load_steps=2 format=3 uid="uid://buv8vyp1s76xr"]
 
-[node name="Dev_Room" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://3j23c47chjnm" path="res://WildJam_64/LEVELS/CRT Shader/crt_shader.tscn" id="1_xaj3a"]
+
+[node name="Dev_Room" type="Node3D"]
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8
@@ -15,3 +17,5 @@ offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Dev Room"
+
+[node name="CRT_Shader" parent="." instance=ExtResource("1_xaj3a")]
