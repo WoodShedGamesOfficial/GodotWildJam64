@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-
+#signal damage
 @export var PLAYERSTATS = {
 	"Health" : 100,
 	"Mana" : 100,
@@ -9,6 +9,7 @@ extends CharacterBody3D
 }
 
 @onready var health = PLAYERSTATS.Health
+var healthmax = 100
 @onready var mana = PLAYERSTATS.Mana
 @onready var stamina = PLAYERSTATS.Stamina
 @onready var walk_speed = PLAYERSTATS.WalkSpeed
@@ -20,6 +21,11 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _ready():
+	var enemies = get_tree().get_nodes_in_group("Enemies")
+	for enemy in enemies:
+		pass
+		#enemy.connect("damage", damage)
 
 func _input(event):
 	if InputEventMouseMotion:
@@ -63,4 +69,10 @@ func control_camera():
 	var mouseCast = $PlayerOrigin/WorldCam/MouseCast
 	var rayOrigin = camera.project_ray_origin(mousePos)
 #	$PlayerOrigin.transform.basis.rotate_y(0.01)
+	pass
+	
+#func damage(severity):
+#	pass
+
+func _process(delta):
 	pass
