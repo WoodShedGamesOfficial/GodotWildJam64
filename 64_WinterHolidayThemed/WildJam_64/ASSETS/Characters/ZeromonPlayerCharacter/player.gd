@@ -1,5 +1,6 @@
 extends CharacterBody3D
 @onready var crt_shader = $PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader
+
 @export var PLAYERSTATS = {
 	"Health" : 100,
 	"HealthMax" : 100,
@@ -21,11 +22,6 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-func _ready():
-	var enemies = get_tree().get_nodes_in_group("Enemies")
-	for enemy in enemies:
-		pass
-		#enemy.connect("damage", damage)
 
 func _input(event):
 	if InputEventMouseMotion:
@@ -51,6 +47,7 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * walk_speed
 		velocity.z = direction.z * walk_speed
+		$Body.rotation.y = atan2(-velocity.x,-velocity.z)
 	else:
 		velocity.x = move_toward(velocity.x, 0, walk_speed)
 		velocity.z = move_toward(velocity.z, 0, walk_speed)
@@ -71,9 +68,6 @@ func control_camera():
 #	$PlayerOrigin.transform.basis.rotate_y(0.01)
 	pass
 	
-#func damage(severity):
-#	pass
-
 func _process(delta):
 	#When player's health is low, the CRT_Shader gets stronger
 	crt_shader.material.set_shader_parameter("crt_white_noise", 1.0 - (float(health) / float(healthmax)))
