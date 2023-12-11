@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2n7f7uirl8hb"]
+
+[ext_resource type="Script" path="res://WildJam_64/LEVELS/Level_One/LevelOneScript.gd" id="1_t07td"]
+
+[node name="LevelOne" type="Node3D"]
+script = ExtResource("1_t07td")
