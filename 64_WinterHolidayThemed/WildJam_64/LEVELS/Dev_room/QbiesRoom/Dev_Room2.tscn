@@ -1,0 +1,213 @@
+[gd_scene load_steps=22 format=3 uid="uid://buwj6bhmsgvjv"]
+
+[ext_resource type="Material" uid="uid://c0txp1p4op3j1" path="res://WildJam_64/ASSETS/Enviromental/Materials/WhiteTiles.tres" id="1_014fx"]
+[ext_resource type="Material" uid="uid://d1a62a42kco1y" path="res://WildJam_64/LEVELS/Dev_room/QbiesRoom/SnowMaterial.tres" id="1_eygej"]
+[ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="2_8owc2"]
+[ext_resource type="Shader" path="res://WildJam_64/LEVELS/CRT Shader/CRT.gdshader" id="3_hkn2e"]
+[ext_resource type="Script" path="res://WildJam_64/LEVELS/Dev_room/QbiesRoom/effectspawner.gd" id="4_b6vt7"]
+[ext_resource type="PackedScene" uid="uid://c5edxtd3dq4h0" path="res://WildJam_64/LEVELS/Dev_room/QbiesRoom/SnowWorld.tscn" id="4_rsv3w"]
+[ext_resource type="Script" path="res://WildJam_64/LEVELS/Dev_room/QbiesRoom/Anchor.gd" id="4_xk1d2"]
+[ext_resource type="PackedScene" uid="uid://762oqsefwts4" path="res://WildJam_64/ASSETS/VFX/VFXScenes/SingleBloodSplat.tscn" id="5_87i3t"]
+[ext_resource type="Material" uid="uid://d4ft30tldlv4r" path="res://WildJam_64/ASSETS/Enviromental/Particles/Snow.material" id="6_86ye7"]
+[ext_resource type="PackedScene" uid="uid://bs3ukt1lpfdbi" path="res://WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="7_v03hw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7cj46"]
+material = ExtResource("1_014fx")
+size = Vector2(30, 30)
+subdivide_width = 60
+subdivide_depth = 60
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_iieni"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vmi38"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4rvc7"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nxyy8"]
+shader = ExtResource("3_hkn2e")
+shader_parameter/crt_brightness = 1.0
+shader_parameter/crt_ghost = 1.034
+shader_parameter/crt_grid = 0.173
+shader_parameter/crt_white_noise = 0.065
+shader_parameter/crt_curve = 0.11
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_koj33"]
+viewport_path = NodePath("Geometry/Floor/SubViewport2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gyieq"]
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_stkv4"]
+material = SubResource("StandardMaterial3D_gyieq")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7hc5y"]
+
+[sub_resource type="Sky" id="Sky_5x1lv"]
+sky_material = SubResource("ProceduralSkyMaterial_7hc5y")
+
+[sub_resource type="Environment" id="Environment_yt6tf"]
+background_mode = 2
+sky = SubResource("Sky_5x1lv")
+
+[node name="Dev_Room" type="Node3D"]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 522.0
+offset_top = 26.0
+offset_right = 601.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dev Room"
+
+[node name="Geometry" type="Node" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="Geometry" node_paths=PackedStringArray("cam")]
+material_override = ExtResource("1_eygej")
+mesh = SubResource("PlaneMesh_7cj46")
+skeleton = NodePath("../..")
+script = ExtResource("4_xk1d2")
+cam = NodePath("../../Characters/Player/PlayerOrigin/WorldCam")
+snow_material = ExtResource("1_eygej")
+
+[node name="SubViewport2" type="SubViewport" parent="Geometry/Floor"]
+disable_3d = true
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(500, 700)
+render_target_update_mode = 4
+
+[node name="WorldRoot" parent="Geometry/Floor/SubViewport2" instance=ExtResource("4_rsv3w")]
+
+[node name="Sprite2D" parent="Geometry/Floor/SubViewport2/WorldRoot" index="1"]
+visible = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Floor/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_iieni")
+
+[node name="Blockout" type="Node" parent="Geometry"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry/Blockout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5.8, 6, 0.5, 0)
+mesh = SubResource("BoxMesh_vmi38")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Blockout/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Blockout/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4rvc7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Geometry/Blockout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5.8, -7, 0.5, 0)
+mesh = SubResource("BoxMesh_vmi38")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Blockout/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Blockout/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4rvc7")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Geometry/Blockout"]
+transform = Transform3D(-4.37114e-08, 0, -5.8, 0, 1, 0, 1, 0, -2.53526e-07, 3.8, 0.5, -4.6)
+mesh = SubResource("BoxMesh_vmi38")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Blockout/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Blockout/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4rvc7")
+
+[node name="Building" type="CSGCombiner3D" parent="Geometry/Blockout"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry/Blockout/Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 2, 0)
+size = Vector3(6, 4, 6)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Geometry/Blockout/Building"]
+transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 14.5, 2, 0)
+operation = 2
+size = Vector3(6, 4, 6)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Geometry/Blockout/Building"]
+transform = Transform3D(0.4275, 0, 0, 0, 0.4275, 0, 0, 0, 0.4275, 14.4713, 0.905832, 2.99181)
+operation = 2
+size = Vector3(6, 4, 6)
+
+[node name="Characters" type="Node" parent="."]
+
+[node name="Player" parent="Characters" groups=["footprint"] instance=ExtResource("2_8owc2")]
+
+[node name="WorldCam" parent="Characters/Player/PlayerOrigin" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 6.61784, 3.6285)
+
+[node name="CRT_Shader" parent="Characters/Player/PlayerOrigin/WorldCam/PlayerGUI" index="0"]
+visible = false
+material = SubResource("ShaderMaterial_nxyy8")
+
+[node name="SubViewport" parent="Characters/Player/PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader" index="0"]
+render_target_update_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Characters/Player/PlayerOrigin/WorldCam" index="2"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("ViewportTexture_koj33")
+
+[node name="EffectSpawner" type="Node3D" parent="Characters/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127829, 0, -1.27759)
+script = ExtResource("4_b6vt7")
+effect_to_test = ExtResource("5_87i3t")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Characters/Player"]
+
+[node name="ExeriorCamTEST" type="Camera3D" parent="Characters"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2, 5, 4)
+
+[node name="Lighting" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.866025, -0.25, -0.433013, 0.5, 0.433013, 0.75, 0, -0.866025, 0.5, 0, 6, 0)
+light_color = Color(0, 0, 0, 1)
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="Snow" type="GPUParticles3D" parent="Effects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+amount = 128
+process_material = ExtResource("6_86ye7")
+draw_pass_1 = SubResource("QuadMesh_stkv4")
+
+[node name="Toys" type="Node" parent="."]
+
+[node name="BouncyBall" parent="Toys" instance=ExtResource("7_v03hw")]
+mass = 0.25
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yt6tf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.69067, 0.85548, -12.0563)
+light_color = Color(1, 0.956863, 0.866667, 1)
+light_energy = 0.58
+shadow_enabled = true
+omni_range = 8.565
+omni_attenuation = 0.535887
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.996756, 0.0804773, 0, -0.0804773, -0.996756, 0, 4.00256, 0)
+light_energy = 0.225
+
+[editable path="Geometry/Floor/SubViewport2/WorldRoot"]
+[editable path="Characters/Player"]
