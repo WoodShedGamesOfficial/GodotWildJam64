@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://d1a62a42kco1y"]
+
+[ext_resource type="Shader" path="res://WildJam_64/LEVELS/Dev_room/QbiesRoom/SnowShader.gdshader" id="1_v4sdv"]
+[ext_resource type="Texture2D" uid="uid://bqfq81j33y21h" path="res://WildJam_64/LEVELS/Dev_room/QbiesRoom/SnowMask.png" id="2_aaa0d"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_v4sdv")
+shader_parameter/snow_height = 1.485
+shader_parameter/world_xy_anchor = Vector2(0, 0)
+shader_parameter/world_size_anchor = Vector2(50, 70)
+shader_parameter/scatter_range = Vector2(-1, 0.185)
+shader_parameter/scatter_amount = 0.015
+shader_parameter/height_occlusion = 0.463
+shader_parameter/scatter_tint = Color(0.72549, 0.908011, 1, 1)
+shader_parameter/mask_texture = ExtResource("2_aaa0d")
