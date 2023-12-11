@@ -95,3 +95,7 @@ Throw={
 config/name="64 Winter Holiday Themed"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(1, 1, 1, 1)

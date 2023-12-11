@@ -1,6 +1,5 @@
 shader_type canvas_item;
 
-
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, repeat_disable, filter_nearest;
 uniform float crt_brightness: hint_range(0.0, 1.0) = 1.0;
 uniform float crt_ghost: hint_range(0.0, 10.0) = 3.0;
@@ -31,7 +30,7 @@ void fragment() {
 	vec3 color = texture(SCREEN_TEXTURE, screen_uv).rgb * (1.0 - crt_brightness * 0.5);
 	color += texture(SCREEN_TEXTURE, screen_uv - vec2((SCREEN_PIXEL_SIZE.x * crt_ghost), 0.0)).rgb;
 	color += texture(SCREEN_TEXTURE, screen_uv + vec2((SCREEN_PIXEL_SIZE.x * crt_ghost), 0.0)).rgb;
-	color *= crt_brightness * 0.33 * crt_mask;
+	color *= crt_brightness * 0.25 * crt_mask;
 	COLOR = vec4(color, 1.0);
 	
 	//White Noise

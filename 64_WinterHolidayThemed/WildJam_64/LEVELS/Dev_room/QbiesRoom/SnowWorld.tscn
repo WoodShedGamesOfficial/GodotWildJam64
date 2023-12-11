@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5edxtd3dq4h0"]
+
+[ext_resource type="Texture2D" uid="uid://cibdthon6h1o1" path="res://icon.svg" id="1_wi62u"]
+
+[sub_resource type="Environment" id="Environment_y0jph"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+
+[node name="WorldRoot" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(786, 247)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-6, 338)
+texture = ExtResource("1_wi62u")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_y0jph")
