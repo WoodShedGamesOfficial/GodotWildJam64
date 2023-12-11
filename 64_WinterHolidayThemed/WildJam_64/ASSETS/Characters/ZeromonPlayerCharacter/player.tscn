@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqthql80cjsxs"]
+[gd_scene load_steps=9 format=3 uid="uid://b6q1x2lqhegy2"]
 
-[ext_resource type="Script" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/PlayeScriptr.gd" id="1_tuyju"]
-[ext_resource type="Shader" path="res://WildJam_64/LEVELS/CRT Shader/CRT.gdshader" id="2_slnx0"]
+[ext_resource type="Script" path="res://WildJam_64/ASSETS/Characters/ZeromonPlayerCharacter/player.gd" id="1_tc64v"]
+[ext_resource type="Shader" path="res://WildJam_64/LEVELS/CRT Shader/CRT.gdshader" id="2_0uog7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34wnd"]
 albedo_color = Color(0.219608, 1, 1, 1)
@@ -9,45 +9,46 @@ albedo_color = Color(0.219608, 1, 1, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i54pw"]
 material = SubResource("StandardMaterial3D_34wnd")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bj0j4"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kj6rk"]
-shader = ExtResource("2_slnx0")
-shader_parameter/crt_brightness = 1.0
-shader_parameter/crt_ghost = 5.0
-shader_parameter/crt_grid = 0.4
-shader_parameter/crt_white_noise = 0.0
-shader_parameter/crt_curve = 0.05
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7so5"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ed1sa"]
 material = SubResource("StandardMaterial3D_w7so5")
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bj0j4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kj6rk"]
+shader = ExtResource("2_0uog7")
+shader_parameter/crt_brightness = 1.0
+shader_parameter/crt_ghost = 5.0
+shader_parameter/crt_grid = 0.4
+shader_parameter/crt_white_noise = 0.0
+shader_parameter/crt_curve = 0.05
+
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_tuyju")
-PLAYERSTATS = {
-"Health": 80,
-"HealthMax": 100,
-"Mana": 100,
-"Stamina": 100,
-"WalkSpeed": 4
-}
+script = ExtResource("1_tc64v")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Body" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
 mesh = SubResource("CapsuleMesh_i54pw")
+skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_bj0j4")
-
-[node name="PlayerLight" type="OmniLight3D" parent="."]
+[node name="PlayerLight" type="OmniLight3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -1)
 light_color = Color(0.745098, 0.501961, 0, 1)
 light_energy = 0.5
 light_cull_mask = 4294966273
 shadow_enabled = true
+
+[node name="AttackDirection" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.2, 0, -0.7)
+mesh = SubResource("BoxMesh_ed1sa")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bj0j4")
 
 [node name="PlayerOrigin" type="Node3D" parent="."]
 
@@ -98,7 +99,3 @@ transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 
 cull_mask = 1047554
 
 [node name="MouseCast" type="RayCast3D" parent="PlayerOrigin/WorldCam"]
-
-[node name="AttackDirection" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.2, 0, -0.7)
-mesh = SubResource("BoxMesh_ed1sa")
