@@ -1,8 +1,11 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ddlgt7lc44p30"]
 
-[ext_resource type="Texture2D" uid="uid://b03w8rqei1cwo" path="res://WildJam_64/UNCUTASSETS/textures/texture_08.png" id="1_oe5gc"]
+[ext_resource type="Texture2D" uid="uid://b03w8rqei1cwo" path="res://WildJam_64/WildJam_64/UNCUTASSETS/textures/texture_08.png" id="1_oe5gc"]
 
 [resource]
 albedo_color = Color(1, 0.631373, 0.396078, 1)
 albedo_texture = ExtResource("1_oe5gc")
+heightmap_scale = -6.215
 uv1_scale = Vector3(3, 3, 3)
+grow_amount = 16.0
+point_size = 9.0

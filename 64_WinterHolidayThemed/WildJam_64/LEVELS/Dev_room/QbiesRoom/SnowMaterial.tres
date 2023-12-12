@@ -1,0 +1,42 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://d1a62a42kco1y"]
+
+[ext_resource type="Shader" path="res://WildJam_64/LEVELS/Dev_room/QbiesRoom/SnowShader.gdshader" id="1_v4sdv"]
+[ext_resource type="Texture2D" uid="uid://bqfq81j33y21h" path="res://WildJam_64/LEVELS/Dev_room/QbiesRoom/SnowMask.png" id="2_aaa0d"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_an7bf"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4aqnx"]
+seamless = true
+noise = SubResource("FastNoiseLite_an7bf")
+
+[sub_resource type="Gradient" id="Gradient_wk4dx"]
+interpolation_mode = 2
+colors = PackedColorArray(0.459663, 0.629835, 0.873376, 1, 0.809436, 0.86164, 0.866588, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qtorc"]
+gradient = SubResource("Gradient_wk4dx")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ir4t1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2ilbr"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_ir4t1")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_v4sdv")
+shader_parameter/snow_height = 1.485
+shader_parameter/world_xy_anchor = Vector2(0, 0)
+shader_parameter/world_size_anchor = Vector2(50, 70)
+shader_parameter/scatter_range = Vector2(-1, 0.43)
+shader_parameter/scatter_amount = 0.135
+shader_parameter/height_occlusion = 0.0
+shader_parameter/scatter_tint = Color(0.74902, 0.968627, 1, 1)
+shader_parameter/normal_depth = 0.7
+shader_parameter/mix_noise_size = 0.015
+shader_parameter/mix_noise = SubResource("NoiseTexture2D_4aqnx")
+shader_parameter/snow_normal = SubResource("NoiseTexture2D_2ilbr")
+shader_parameter/snow_color_gradient = SubResource("GradientTexture1D_qtorc")
+shader_parameter/mask_texture = ExtResource("2_aaa0d")

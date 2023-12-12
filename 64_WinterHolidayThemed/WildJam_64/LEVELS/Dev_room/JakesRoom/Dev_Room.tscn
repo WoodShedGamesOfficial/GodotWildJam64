@@ -2,8 +2,8 @@
 
 [ext_resource type="Material" uid="uid://c0txp1p4op3j1" path="res://WildJam_64/ASSETS/Enviromental/Materials/WhiteTiles.tres" id="1_yslad"]
 [ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="2_n765u"]
-[ext_resource type="Material" path="res://WildJam_64/ASSETS/Enviromental/Particles/Snow.material" id="3_b6bn2"]
-[ext_resource type="PackedScene" uid="uid://bs3ukt1lpfdbi" path="res://WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="4_5k1fv"]
+[ext_resource type="Material" uid="uid://d4ft30tldlv4r" path="res://WildJam_64/ASSETS/Enviromental/Particles/Snow.material" id="3_b6bn2"]
+[ext_resource type="PackedScene" path="res://WildJam_64/WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="4_5k1fv"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7cj46"]
 material = ExtResource("1_yslad")

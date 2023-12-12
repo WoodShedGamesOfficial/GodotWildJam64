@@ -59,10 +59,14 @@ normal_texture = SubResource("NoiseTexture2D_jt2yo")
 
 [node name="TestLevelProcGen" type="Node3D"]
 script = ExtResource("1_8snfj")
+t_radius = 200
 rock = ExtResource("2_rqj1q")
+rock_count = 250
 tree = ExtResource("3_csfqq")
-tree_count = 5000
+tree_count = 2500
 town = ExtResource("2_ayub6")
+world_size = 2000
+subdivisions = 40
 land_mat = SubResource("StandardMaterial3D_waa6a")
 
 [node name="Terrain" type="Node" parent="."]
@@ -74,6 +78,13 @@ mesh = SubResource("ArrayMesh_qj7mj")
 
 [node name="Player2" parent="Characters" instance=ExtResource("2_juxyf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.26278, 10.4985, 0)
+PLAYERSTATS = {
+"Health": 100,
+"HealthMax": 100,
+"Mana": 100,
+"Stamina": 100,
+"WalkSpeed": 60
+}
 
 [node name="Lighting" type="Node" parent="."]
 

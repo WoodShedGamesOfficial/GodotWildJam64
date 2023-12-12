@@ -31,7 +31,7 @@ void fragment() {
 	vec3 color = texture(SCREEN_TEXTURE, screen_uv).rgb * (1.0 - crt_brightness * 0.5);
 	color += texture(SCREEN_TEXTURE, screen_uv - vec2((SCREEN_PIXEL_SIZE.x * crt_ghost), 0.0)).rgb;
 	color += texture(SCREEN_TEXTURE, screen_uv + vec2((SCREEN_PIXEL_SIZE.x * crt_ghost), 0.0)).rgb;
-	color *= crt_brightness * 0.25 * crt_mask;
+	color *= crt_brightness * 0.33 * crt_mask;
 	COLOR = vec4(color, 1.0);
 	
 	//White Noise
