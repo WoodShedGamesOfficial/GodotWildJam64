@@ -53,6 +53,8 @@ mesh = SubResource("PlaneMesh_7cj46")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Floor"]
+collision_layer = 8
+collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Floor/StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_iieni")
