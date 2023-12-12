@@ -3,8 +3,8 @@
 [ext_resource type="Material" uid="uid://ddlgt7lc44p30" path="res://WildJam_64/ASSETS/Enviromental/Materials/OrangeTiles.tres" id="1_7yuxi"]
 [ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="2_hlnai"]
 [ext_resource type="Script" path="res://WildJam_64/LEVELS/Dev_room/Ragyuo dev-room/BearTrap.gd" id="3_5eitu"]
-[ext_resource type="AudioStream" uid="uid://magiq6nbrr0l" path="res://WildJam_64/ASSETS/Sounds/Trap.ogg" id="4_t7hw4"]
-[ext_resource type="AudioStream" uid="uid://bolev1tnxhvae" path="res://WildJam_64/ASSETS/Sounds/Break.ogg" id="5_tkypg"]
+[ext_resource type="AudioStream" path="res://WildJam_64/WildJam_64/ASSETS/Sounds/Trap.ogg" id="4_t7hw4"]
+[ext_resource type="AudioStream" path="res://WildJam_64/WildJam_64/ASSETS/Sounds/Break.ogg" id="5_tkypg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4w5f6"]
 size = Vector2(300, 300)
