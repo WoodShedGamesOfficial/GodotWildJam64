@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfd0gmnpshfe3"]
+[gd_scene load_steps=13 format=3 uid="uid://dfd0gmnpshfe3"]
 
 [ext_resource type="Material" uid="uid://c0txp1p4op3j1" path="res://WildJam_64/ASSETS/Enviromental/Materials/WhiteTiles.tres" id="1_yslad"]
 [ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="2_n765u"]
 [ext_resource type="Material" uid="uid://d4ft30tldlv4r" path="res://WildJam_64/ASSETS/Enviromental/Particles/Snow.material" id="3_b6bn2"]
+[ext_resource type="PackedScene" uid="uid://cwd83pnml1nx2" path="res://WildJam_64/LEVELS/Dev_room/JakesRoom/police_siren.tscn" id="3_e63jg"]
 [ext_resource type="PackedScene" uid="uid://bs3ukt1lpfdbi" path="res://WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="4_5k1fv"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7cj46"]
@@ -17,6 +18,7 @@ size = Vector2(500, 500)
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="Environment" id="Environment_a51fp"]
+tonemap_mode = 3
 volumetric_fog_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gyieq"]
@@ -87,6 +89,7 @@ mesh = SubResource("BoxMesh_vmi38")
 shape = SubResource("ConcavePolygonShape3D_4rvc7")
 
 [node name="Building" type="CSGCombiner3D" parent="Geometry/Blockout"]
+use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Geometry/Blockout/Building"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 2, 0)
@@ -112,12 +115,28 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 [node name="Lighting" type="Node" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(0.866025, -0.25, -0.433013, 0.390041, 0.879638, 0.272221, 0.312839, -0.404643, 0.859299, -1.00417, 6, 0)
-light_color = Color(0.870588, 0.870588, 0.870588, 1)
+transform = Transform3D(0.866025, -0.250001, -0.433013, 0.390041, 0.879638, 0.272221, 0.312839, -0.404643, 0.859299, -1.00417, 4.78068, 0)
+light_color = Color(0.27451, 0.27451, 0.27451, 1)
 light_energy = 3.101
+
+[node name="PogVolume" type="FogVolume" parent="Lighting/DirectionalLight3D"]
+transform = Transform3D(0.86962, 0.390011, 0.302743, -0.236231, 0.867123, -0.438511, -0.433539, 0.30982, 0.8462, 13.3185, -9.92125, -6.48374)
+size = Vector3(16, 2, 16)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
 environment = SubResource("Environment_a51fp")
+
+[node name="police siren" parent="Lighting" instance=ExtResource("3_e63jg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.759949, 3.67842, 3.53196)
+LIGHTPROPERTIES = Color(1, 0, 0, 1)
+
+[node name="SpotLight3D" parent="Lighting/police siren" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -1.19061, -5.29662)
+light_energy = 16.0
+
+[node name="SpotLight3D2" parent="Lighting/police siren" index="1"]
+light_energy = 16.0
+spot_range = 4096.0
 
 [node name="Effects" type="Node" parent="."]
 
@@ -135,3 +154,5 @@ mass = 0.25
 [node name="Audio" type="Node" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+
+[editable path="Lighting/police siren"]
