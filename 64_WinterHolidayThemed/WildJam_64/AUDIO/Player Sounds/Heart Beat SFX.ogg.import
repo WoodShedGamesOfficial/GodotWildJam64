@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c7r04h6me75d8"
+path="res://.godot/imported/Heart Beat SFX.ogg-8e979163c5fe93ec4b9c00c7a27615eb.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Player Sounds/Heart Beat SFX.ogg"
+dest_files=["res://.godot/imported/Heart Beat SFX.ogg-8e979163c5fe93ec4b9c00c7a27615eb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
