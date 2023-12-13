@@ -71,6 +71,9 @@ mesh = SubResource("BoxMesh_ed1sa")
 [node name="TheShadowInTheDark2" parent="." instance=ExtResource("3_i5gpu")]
 transform = Transform3D(-1.11898e-08, 0, -0.255993, 0, 0.255993, 0, 0.255993, 0, -1.11898e-08, 0, 0, 0)
 
+[node name="BoneAttachment3D" parent="TheShadowInTheDark2/Skeleton3D" index="1"]
+transform = Transform3D(0.612639, -0.657587, -0.438468, -0.515245, -0.752969, 0.409342, -0.59933, -0.0248601, -0.800116, -1.87204, 1.16952, -1.23316)
+
 [node name="Cursor" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 material_override = ExtResource("4_ggkpi")

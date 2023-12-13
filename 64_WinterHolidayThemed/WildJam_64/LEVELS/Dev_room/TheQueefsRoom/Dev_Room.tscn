@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://buv8vyp1s76xr"]
+[gd_scene load_steps=13 format=3 uid="uid://buv8vyp1s76xr"]
 
 [ext_resource type="Material" uid="uid://c0txp1p4op3j1" path="res://WildJam_64/ASSETS/Enviromental/Materials/WhiteTiles.tres" id="1_4v2sd"]
 [ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="2_c8gxt"]
 [ext_resource type="PackedScene" uid="uid://bs3ukt1lpfdbi" path="res://WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="3_2r78u"]
+[ext_resource type="Script" path="res://WildJam_64/ASSETS/Characters/ZeterWork/ZeterScript.gd" id="3_6yw14"]
 [ext_resource type="Material" uid="uid://d4ft30tldlv4r" path="res://WildJam_64/ASSETS/Enviromental/Particles/Snow.material" id="3_bk5yp"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7cj46"]
@@ -107,6 +108,8 @@ size = Vector3(6, 4, 6)
 [node name="Characters" type="Node" parent="."]
 
 [node name="Player" parent="Characters" instance=ExtResource("2_c8gxt")]
+collision_mask = 9
+script = ExtResource("3_6yw14")
 
 [node name="ExeriorCamTEST" type="Camera3D" parent="Characters"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2, 5, 4)

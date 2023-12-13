@@ -6,7 +6,8 @@ extends CharacterBody3D
 	"HealthMax" : 100,
 	"Mana" : 100,
 	"Stamina" : 100,
-	'WalkSpeed' : 20
+	"WalkSpeed" : 20,
+	"Damage" : 25,
 }
 
 @onready var health = PLAYERSTATS.Health
@@ -14,6 +15,7 @@ extends CharacterBody3D
 @onready var mana = PLAYERSTATS.Mana
 @onready var stamina = PLAYERSTATS.Stamina
 @onready var walk_speed = PLAYERSTATS.WalkSpeed
+@onready var damage = PLAYERSTATS.Damage
 
 
 const JUMP_VELOCITY = 4.5
@@ -31,10 +33,29 @@ func _ready():
 
 
 func _input(event):
+#	if InputEventMouseMotion:
+#		control_camera() #/ takes player mouse input for camera control
 	
+	if Input.is_action_just_pressed("LMB"):
+		player_attack(damage) #/I need to replace green text but 2 days left on development so.. If we get to it
+		await ($TheShadowInTheDark2/ShadowAnimations.animation_finished)
 	
+	if Input.is_action_just_pressed('ui_end'): #/TODO: on player finishes level
+		if TheDirector.player_infamy > 2:
+			print("you got the lethal ending")
+		else:
+			print("you got the good guy ending")
+		
+		get_tree().quit()
 	pass
 
+func player_attack(damage):
+	$TheShadowInTheDark2/Skeleton3D/BoneAttachment3D/HitBox.monitoring = true
+	$TheShadowInTheDark2/ShadowAnimations.play("Lethal_Attack")
+	await ($TheShadowInTheDark2/ShadowAnimations.animation_finished)
+	$TheShadowInTheDark2/Skeleton3D/BoneAttachment3D/HitBox.monitoring = false
+	pass
+	
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -83,7 +104,7 @@ func control_camera():
 	
 	#/vars:
 	var playercam = $PlayerOrigin/WorldCam
-	var world_cursor = $MouseMesh
+	#var world_cursor = $MouseMesh
 	var player_pos = global_transform.origin
 	var drop_plane = Plane(Vector3(0, 1, 0), player_pos.y)
 	var ray_length = 1000
@@ -94,7 +115,7 @@ func control_camera():
 	
 	
 	#/syntax
-	world_cursor.global_transform.origin = cursor_pos + Vector3(0, 1, 0)
+	#world_cursor.global_transform.origin = cursor_pos + Vector3(0, 1, 0)
 	$TheShadowInTheDark2.look_at(cursor_pos, Vector3.UP)
 	var degrees = deg_to_rad(-90)
 	$TheShadowInTheDark2.rotate_y(degrees)
