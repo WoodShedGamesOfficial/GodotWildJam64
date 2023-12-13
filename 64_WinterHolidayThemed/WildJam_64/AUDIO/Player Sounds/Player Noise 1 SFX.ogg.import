@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dscy2wywbyw60"
+path="res://.godot/imported/Player Noise 1 SFX.ogg-d170ed27871dad3ab3d54badd0cad3aa.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Player Sounds/Player Noise 1 SFX.ogg"
+dest_files=["res://.godot/imported/Player Noise 1 SFX.ogg-d170ed27871dad3ab3d54badd0cad3aa.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

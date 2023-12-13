@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cwgq3ovwud4r0"
+path="res://.godot/imported/Sneak Music.ogg-e049da10a73e715f674fe27efa180cb6.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Music/Sneak Music.ogg"
+dest_files=["res://.godot/imported/Sneak Music.ogg-e049da10a73e715f674fe27efa180cb6.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

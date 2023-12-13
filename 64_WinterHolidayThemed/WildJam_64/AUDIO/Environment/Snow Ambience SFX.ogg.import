@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://de866wmmanado"
+path="res://.godot/imported/Snow Ambience SFX.ogg-23e3ff150fc1287835fc58f5ef6829f3.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Environment/Snow Ambience SFX.ogg"
+dest_files=["res://.godot/imported/Snow Ambience SFX.ogg-23e3ff150fc1287835fc58f5ef6829f3.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

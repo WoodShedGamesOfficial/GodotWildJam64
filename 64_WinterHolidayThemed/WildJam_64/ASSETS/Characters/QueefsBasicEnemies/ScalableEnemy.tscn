@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dc0vk72i8hoe7"]
+[gd_scene load_steps=8 format=3 uid="uid://dc0vk72i8hoe7"]
 
 [ext_resource type="Script" path="res://WildJam_64/SCRIPTS/Enemy.gd" id="1_vrn03"]
+[ext_resource type="PackedScene" uid="uid://b3cyqnr336gpl" path="res://WildJam_64/ASSETS/Toys/enemy_weapons.tscn" id="2_06l4r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o0vtd"]
 
@@ -352,7 +353,7 @@ bones/17/parent = 16
 bones/17/rest = Transform3D(0.996096, 0.0882324, -0.00261719, -0.0866556, 0.971789, -0.219357, -0.0168111, 0.218728, 0.975641, -1.22721e-08, 0.286368, -1.7719e-09)
 bones/17/enabled = true
 bones/17/position = Vector3(-1.22721e-08, 0.286368, -1.7719e-09)
-bones/17/rotation = Quaternion(0.110303, 0.00357379, -0.0440339, 0.992916)
+bones/17/rotation = Quaternion(0.0981847, 0.00454838, 0.405773, 0.908673)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "Wrist.R"
 bones/18/parent = 17
@@ -667,6 +668,17 @@ bones/61/scale = Vector3(1, 1, 1)
 mesh = SubResource("ArrayMesh_lrtab")
 skin = SubResource("Skin_11d22")
 
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="MeshAndBone/Skeleton3D"]
+transform = Transform3D(-0.987622, -0.156646, 0.00801985, 0.156542, -0.981171, 0.11313, -0.00985254, 0.112985, 0.993547, -0.433941, 0.489223, -0.0481092)
+bone_name = "Forearm.R"
+bone_idx = 17
+
+[node name="EnemyWeapons" parent="MeshAndBone/Skeleton3D/BoneAttachment3D" instance=ExtResource("2_06l4r")]
+transform = Transform3D(0.250672, 0.96585, -0.0655591, 0.963918, -0.255291, -0.0754301, -0.0895907, -0.0442855, -0.994993, -0.0524172, 0.0529613, 0.0172066)
+
+[node name="Torch" parent="MeshAndBone/Skeleton3D/BoneAttachment3D/EnemyWeapons" index="1"]
+transform = Transform3D(0.948885, 0.314471, -0.026886, -0.314618, 0.949216, -0.00130469, 0.0251103, 0.00969677, 0.999637, 0.212841, -0.0384171, -0.0309957)
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="MeleeAttackRadius" type="Area3D" parent="."]
@@ -680,3 +692,5 @@ target_position = Vector3(0, 0, -4.875)
 debug_shape_custom_color = Color(1, 0.87451, 0, 1)
 
 [connection signal="body_entered" from="MeleeAttackRadius" to="." method="_on_melee_attack_radius_body_entered"]
+
+[editable path="MeshAndBone/Skeleton3D/BoneAttachment3D/EnemyWeapons"]

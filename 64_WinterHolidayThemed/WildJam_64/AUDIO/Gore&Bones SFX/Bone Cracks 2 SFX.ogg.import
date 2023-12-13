@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bp1trpi1fa1t5"
+path="res://.godot/imported/Bone Cracks 2 SFX.ogg-b87c4c0cd833bde9accd1130faea3939.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Gore&Bones SFX/Bone Cracks 2 SFX.ogg"
+dest_files=["res://.godot/imported/Bone Cracks 2 SFX.ogg-b87c4c0cd833bde9accd1130faea3939.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://l3l5vdaxshqh"
+path="res://.godot/imported/Bone Cracks-Chew 3 SFX.ogg-798e2157600541a058b3f426cbca7254.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Gore&Bones SFX/Bone Cracks-Chew 3 SFX.ogg"
+dest_files=["res://.godot/imported/Bone Cracks-Chew 3 SFX.ogg-798e2157600541a058b3f426cbca7254.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
