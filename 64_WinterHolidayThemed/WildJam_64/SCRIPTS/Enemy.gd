@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Enemy
 
 #signal damage
 @export var tool_path : Node
@@ -86,17 +87,22 @@ func _on_melee_attack_radius_body_entered(body):
 	
 	pass
 
-
+##If tool is null, the enemy is unarmed, and will act according to their character
+##If tool is not null, the enemy will act depending on what tool they have.
 func tool_use():
+
 #	look_at()
 	if tool_path!= null:
 		pass
+
+	if tool == null: unarmed_action()
+
 	else:
 		pass
-	
+		
+func unarmed_action():
 	pass
 	
-
 func set_state():
 	#/if player detected etc:
 	state = next_state

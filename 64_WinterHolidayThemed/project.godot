@@ -113,3 +113,12 @@ secretButton={
 3d_physics/layer_2="Enemies"
 3d_physics/layer_3="Toys"
 3d_physics/layer_4="Enviroment"
+
+config/name="64 Winter Holiday Themed"
+config/features=PackedStringArray("4.1", "Forward Plus")
+config/icon="res://icon.svg"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(1, 1, 1, 1)
+
