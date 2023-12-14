@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
+#/declerations
 @onready var crt_shader = $PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader/Container
 @onready var playercam = $PlayerOrigin/WorldCam
 @onready var world_cursor = $Cursor
-@onready var player_mesh = $TheShadowInTheDark2
 
 @export var PLAYERSTATS = {
 	"Health" : 100,
@@ -21,18 +21,30 @@ extends CharacterBody3D
 @onready var walk_speed = PLAYERSTATS.WalkSpeed
 @onready var damage = PLAYERSTATS.Damage
 
-const JUMP_VELOCITY = 4.5
+@onready var player_hitbox = $TheShadowInTheDark2/Skeleton3D/HandAttachment/HitBox
+@onready var mesh_anim = $TheShadowInTheDark2/ShadowAnimations
+@onready var player_mesh = $TheShadowInTheDark2
 
+@onready var pointer_path = preload("res://WildJam_64/UNCUTASSETS/pointer.tscn")
+
+
+const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
+#/Functions
 func _ready():
 	add_to_group("Player")
 	TheDirector.player_position_on_map = transform.origin
-	$TheShadowInTheDark2/ShadowAnimations.play("Idle")
+	mesh_anim.play("Idle")
 	
+	var pointer = pointer_path.instantiate()
+	
+	for towns in TheDirector.town_count:
+		$Compass.add_child(pointer)
+		pointer
 	
 	pass
 
@@ -43,7 +55,7 @@ func _input(event):
 	
 	if Input.is_action_just_pressed("LMB"):
 		player_attack(damage) #/I need to replace green text but 2 days left on development so.. If we get to it
-		await ($TheShadowInTheDark2/ShadowAnimations.animation_finished)
+		await (mesh_anim.animation_finished)
 	
 	if Input.is_action_just_pressed('ui_end'): #/TODO: on player finishes level
 		if TheDirector.player_infamy > 2:
@@ -61,10 +73,13 @@ func _process(delta):
 	#When player's health is low, the CRT_Shader gets stronger
 	crt_shader.material.set_shader_parameter("crt_white_noise", 1.0 - (float(health) / float(healthmax)))
 	if velocity.z != 0:
-		$TheShadowInTheDark2/ShadowAnimations.play("Walk_Combat")
+		mesh_anim.play("Walk_Combat")
 	else:
-		if $TheShadowInTheDark2/ShadowAnimations.is_playing() == false:
-			$TheShadowInTheDark2/ShadowAnimations.play("Idle")
+		if mesh_anim.is_playing() == false:
+			mesh_anim.play("Idle")
+	
+	$Compass.look_at(TheDirector.next_town_location)
+#	print(str(TheDirector.next_town_location))
 	pass
 
 
@@ -131,10 +146,16 @@ func camera_control():
 	
 	
 	#/syntax
+
 	#world_cursor.global_transform.origin = cursor_pos + Vector3(0, 1, 0)
 	$TheShadowInTheDark2.look_at(cursor_pos, Vector3.UP)
 	var degrees = deg_to_rad(-90)
 	$TheShadowInTheDark2.rotate_y(degrees)
+
+	world_cursor.global_transform.origin = cursor_pos + Vector3(0, 1, 0)
+	player_mesh.look_at(cursor_pos, Vector3.UP)
+	
+
 	
 	pass
 
@@ -145,10 +166,10 @@ func report_to_the_director():
 
 
 func player_attack(damage):
-	$TheShadowInTheDark2/Skeleton3D/BoneAttachment3D/HitBox.monitoring = true
-	$TheShadowInTheDark2/ShadowAnimations.play("Lethal_Attack")
-	await ($TheShadowInTheDark2/ShadowAnimations.animation_finished)
-	$TheShadowInTheDark2/Skeleton3D/BoneAttachment3D/HitBox.monitoring = false
+	player_hitbox.monitoring = true
+	mesh_anim.play("Lethal_Attack")
+	await (mesh_anim.animation_finished)
+	player_hitbox.monitoring = false
 	pass
 
 
