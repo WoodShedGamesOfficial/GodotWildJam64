@@ -19,6 +19,9 @@ var next_state
 @onready var navigation_agent_3d = $NavigationAgent3D
 @onready var player_pos = TheDirector.player_position_on_map
 @onready var human_gibs_path = preload("res://WildJam_64/ASSETS/Toys/human_gibs.tscn")
+@onready var enemy_tier = (TheDirector.player_infamy + randi_range(0, 5))
+
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,15 +30,46 @@ func _ready():
 	#/equips weapon and armor
 	equip_tool() 
 	
-	await (get_tree().create_timer(30.0).timeout)
+#	await (get_tree().create_timer(30.0).timeout)
 	
 	#/enemy navigation
 	navigation_agent_3d.connect("navigation_finished", get_next_location)
 	navigation_agent_3d.target_position = TheDirector.player_position_on_map
 	navigation_agent_3d.get_next_path_position()
-	print(str(navigation_agent_3d.target_position))
+	
+	#/enemy tier levels
+	match enemy_tier:
+		0:
+			print("farmer")
+		1:
+			print('angry townsfolk')
+		2:
+			print('cop')
+		3:
+			print("swat")
+		4:
+			print("soldier")
+		5:
+			print("man in black")
+	
+#	for level in enemy_tier:
+#		match level:
+#			enemy_tier.0:
+#				print("farmer")
+#			enemy_tier == 1:
+#				print('armed farmer')
+#			enemy_tier[3]:
+#				print('cop')
+#			enemy_tier[4]:
+#				print('swat')
+#			enemy_tier[5]:
+#				print('soldier')
+	
+	print(str(navigation_agent_3d.target_position), str(enemy_tier)) #/sets enemy tier based on player infamy
 	
 	#/
+	
+	
 	pass # Replace with function body.
 
 
@@ -61,6 +95,11 @@ func enemy_movement():
 	var current_location = global_transform.origin
 	var next_location = navigation_agent_3d.get_next_path_position()
 	var new_velocity = (next_location - current_location).normalized() * 5 #/walkspeed
+	
+	if not is_on_floor():
+		velocity.y -= gravity
+		print("enemy falling")
+		pass
 	
 	velocity = velocity.move_toward(new_velocity, .25)
 	

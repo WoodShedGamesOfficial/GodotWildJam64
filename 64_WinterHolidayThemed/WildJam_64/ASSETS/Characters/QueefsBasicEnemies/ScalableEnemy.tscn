@@ -669,7 +669,7 @@ mesh = SubResource("ArrayMesh_lrtab")
 skin = SubResource("Skin_11d22")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="MeshAndBone/Skeleton3D"]
-transform = Transform3D(-0.987622, -0.156646, 0.00801985, 0.156542, -0.981171, 0.11313, -0.00985254, 0.112985, 0.993547, -0.433941, 0.489223, -0.0481092)
+transform = Transform3D(-0.987622, -0.156646, 0.00801986, 0.156542, -0.981171, 0.11313, -0.00985255, 0.112985, 0.993548, -0.433941, 0.489223, -0.0481092)
 bone_name = "Forearm.R"
 bone_idx = 17
 
@@ -680,6 +680,9 @@ transform = Transform3D(0.250672, 0.96585, -0.0655591, 0.963918, -0.255291, -0.0
 transform = Transform3D(0.948885, 0.314471, -0.026886, -0.314618, 0.949216, -0.00130469, 0.0251103, 0.00969677, 0.999637, 0.212841, -0.0384171, -0.0309957)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+debug_path_custom_point_size = 6.0
 
 [node name="MeleeAttackRadius" type="Area3D" parent="."]
 

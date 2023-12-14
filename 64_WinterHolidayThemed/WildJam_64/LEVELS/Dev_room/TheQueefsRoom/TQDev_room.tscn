@@ -1,11 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://bsbl7c8pnwee"]
+[gd_scene load_steps=27 format=3 uid="uid://bsbl7c8pnwee"]
 
 [ext_resource type="Texture2D" uid="uid://b03w8rqei1cwo" path="res://WildJam_64/UNCUTASSETS/textures/texture_08.png" id="1_5snvr"]
+[ext_resource type="Script" path="res://WildJam_64/SCRIPTS/Generator.gd" id="1_hcdim"]
+[ext_resource type="PackedScene" uid="uid://dr1e1d6j23pvw" path="res://WildJam_64/ASSETS/Enviromental/Rocks/rock.res" id="2_4kpr6"]
 [ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="2_ob1pg"]
 [ext_resource type="PackedScene" uid="uid://dc0vk72i8hoe7" path="res://WildJam_64/ASSETS/Characters/QueefsBasicEnemies/ScalableEnemy.tscn" id="3_7cnv1"]
+[ext_resource type="PackedScene" uid="uid://dfttfshl5lcco" path="res://WildJam_64/ASSETS/Enviromental/Trees/tree.res" id="3_l63of"]
 [ext_resource type="PackedScene" uid="uid://bs3ukt1lpfdbi" path="res://WildJam_64/ASSETS/Toys/bouncy_ball.tscn" id="3_mb52n"]
 [ext_resource type="Texture2D" uid="uid://bjc1je1lovs0c" path="res://WildJam_64/UNCUTASSETS/textures/qr-code.png" id="4_08jdu"]
 [ext_resource type="PackedScene" uid="uid://cjrhqog8dey0s" path="res://WildJam_64/ASSETS/Toys/human_gibs.tscn" id="4_kjegx"]
+[ext_resource type="PackedScene" uid="uid://2n7f7uirl8hb" path="res://WildJam_64/LEVELS/Level_One/LevelOne.tscn" id="4_twodm"]
+[ext_resource type="Material" uid="uid://do78hae5n2j2t" path="res://WildJam_64/ASSETS/Enviromental/Materials/TerrainSnow.tres" id="5_vbhnq"]
 [ext_resource type="PackedScene" uid="uid://drii0l7qinatu" path="res://WildJam_64/UNCUTASSETS/Characters/MonsterGibs.glb" id="7_3t5t4"]
 [ext_resource type="PackedScene" uid="uid://jr0o6focnd4t" path="res://WildJam_64/UNCUTASSETS/Characters/humanBits.glb" id="8_shxy1"]
 [ext_resource type="PackedScene" uid="uid://tton5gdsh6al" path="res://WildJam_64/UNCUTASSETS/Characters/Test_Character.glb" id="9_fjoal"]
@@ -13,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cnepgw422v3js" path="res://WildJam_64/UNCUTASSETS/Characters/TheShadowInTheDark.glb" id="11_i4dfh"]
 [ext_resource type="PackedScene" uid="uid://dkegwpi64ys7y" path="res://WildJam_64/ASSETS/Characters/TheShadowInTheDark/TheShadowInTheDark.glb" id="12_l4k07"]
 [ext_resource type="PackedScene" uid="uid://cvnhbtty1ckp3" path="res://WildJam_64/ASSETS/Characters/TheShadowInTheDark/AnimatedShadow.tscn" id="13_m77go"]
+[ext_resource type="AudioStream" uid="uid://dgt6lj7ou6ljw" path="res://WildJam_64/AUDIO/Environment/CarRunning.ogg" id="13_tg6mr"]
 
 [sub_resource type="Environment" id="Environment_6i1ym"]
 background_mode = 1
@@ -38,7 +44,17 @@ size = Vector2(500, 500)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4yiqo"]
 data = PackedVector3Array(250, 0, 250, -250, 0, 250, 250, 0, -250, -250, 0, 250, -250, 0, -250, 250, 0, -250)
 
+[sub_resource type="ArrayMesh" id="ArrayMesh_14rin"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tp7nj"]
+size = Vector2(1000, 1000)
+
 [node name="TQDev_room" type="Node3D"]
+script = ExtResource("1_hcdim")
+rock = ExtResource("2_4kpr6")
+tree = ExtResource("3_l63of")
+town = ExtResource("4_twodm")
+land_mat = ExtResource("5_vbhnq")
 
 [node name="Lighting" type="Node" parent="."]
 
@@ -56,8 +72,14 @@ environment = SubResource("Environment_6i1ym")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.789247, 1.3, -0.448305)
 collision_mask = 15
 
+[node name="CollisionShape3D" parent="Characters/Player" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.299999, 0)
+
+[node name="PlayerOrigin" parent="Characters/Player" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.967405, -0.253235, 0, 0.253235, 0.967405, 0, 0, 0)
+
 [node name="WorldCam" parent="Characters/Player/PlayerOrigin" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.347786, 0.937574, 0, -0.937574, 0.347786, 0, 7.23622, 2.09291)
+transform = Transform3D(1, 0, 0, 0, 0.347786, 0.937574, 0, -0.937574, 0.347786, -0.0893517, 8.7139, -1.89066)
 
 [node name="ScalableEnemy" parent="Characters" instance=ExtResource("3_7cnv1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.8201, 1.2892, -4.06626)
@@ -81,9 +103,43 @@ texture = ExtResource("4_08jdu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.392, 1.91086, -3.93693)
 size = Vector3(34.6133, 2, 31.6748)
 
+[node name="HumanGibs" parent="Toys" instance=ExtResource("4_kjegx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57325, -8.96819)
+
+[node name="BloodDecal" parent="Toys/HumanGibs" index="1"]
+layers = 1
+
+[node name="MonsterGibs" parent="Toys" instance=ExtResource("7_3t5t4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.18077, 2.32434, -1.30393)
+
+[node name="HumanGibs2" parent="Toys" instance=ExtResource("4_kjegx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9516, 1.21377, -5.672)
+
+[node name="humanBits" parent="Toys" instance=ExtResource("8_shxy1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55267, 1.62027, 1.20707)
+
+[node name="Test_Character" parent="Toys" instance=ExtResource("9_fjoal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.51615, 1.12075, 1.2757)
+
+[node name="GWJ64_EnemyWeapons" parent="Toys" instance=ExtResource("10_f8h2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4171, 1.3622, 1.57117)
+
+[node name="TheShadowInTheDark" parent="Toys" instance=ExtResource("11_i4dfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9952, 1.98946, 0.487619)
+
+[node name="TheShadowInTheDark2" parent="Toys" instance=ExtResource("12_l4k07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96524, 2.18677, 0.543148)
+
+[node name="TheShadowInTheDark3" parent="Toys" instance=ExtResource("13_m77go")]
+transform = Transform3D(0.255993, 0, 0, 0, 0.255993, 0, 0, 0, 0.255993, 7.59959, 1.29222, -1.55361)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Toys"]
+stream = ExtResource("13_tg6mr")
+
 [node name="Geometry" type="Node" parent="."]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Geometry"]
+visible = false
 navigation_mesh = SubResource("NavigationMesh_1wbmn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry/NavigationRegion3D"]
@@ -97,41 +153,19 @@ collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/NavigationRegion3D/MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_4yiqo")
+disabled = true
 
-[node name="HumanGibs" parent="." instance=ExtResource("4_kjegx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57325, -8.96819)
+[node name="Terrain" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.70588, 0)
+mesh = SubResource("ArrayMesh_14rin")
 
-[node name="BloodDecal" parent="HumanGibs" index="1"]
-layers = 1
-
-[node name="MonsterGibs" parent="." instance=ExtResource("7_3t5t4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.18077, 2.32434, -1.30393)
-
-[node name="HumanGibs2" parent="." instance=ExtResource("4_kjegx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9516, 1.21377, -5.672)
-
-[node name="humanBits" parent="." instance=ExtResource("8_shxy1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55267, 1.62027, 1.20707)
-
-[node name="Test_Character" parent="." instance=ExtResource("9_fjoal")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.51615, 1.12075, 1.2757)
-
-[node name="GWJ64_EnemyWeapons" parent="." instance=ExtResource("10_f8h2k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4171, 1.3622, 1.57117)
-
-[node name="TheShadowInTheDark" parent="." instance=ExtResource("11_i4dfh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9952, 1.98946, 0.487619)
-
-[node name="TheShadowInTheDark2" parent="." instance=ExtResource("12_l4k07")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96524, 2.18677, 0.543148)
-
-[node name="TheShadowInTheDark3" parent="." instance=ExtResource("13_m77go")]
-transform = Transform3D(0.255993, 0, 0, 0, 0.255993, 0, 0, 0, 0.255993, 7.59959, 1.29222, -1.55361)
-
-[node name="BoneAttachment3D" parent="TheShadowInTheDark3/Skeleton3D" index="1"]
-transform = Transform3D(0.912806, -0.28153, -0.295849, -0.205272, -0.942542, 0.263583, -0.353057, -0.179871, -0.918148, -1.09107, 0.799263, -1.40635)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.1713, 0)
+visible = false
+material_override = ExtResource("5_vbhnq")
+mesh = SubResource("PlaneMesh_tp7nj")
 
 [editable path="Characters/Player"]
 [editable path="Characters/Player/TheShadowInTheDark2"]
-[editable path="HumanGibs"]
-[editable path="TheShadowInTheDark3"]
+[editable path="Toys/HumanGibs"]
+[editable path="Toys/TheShadowInTheDark3"]

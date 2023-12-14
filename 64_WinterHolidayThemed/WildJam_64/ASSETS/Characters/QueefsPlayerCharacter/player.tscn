@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqthql80cjsxs"]
+[gd_scene load_steps=10 format=3 uid="uid://dqthql80cjsxs"]
 
 [ext_resource type="Script" path="res://WildJam_64/ASSETS/Characters/ZeromonPlayerCharacter/player.gd" id="1_k8k6x"]
 [ext_resource type="PackedScene" uid="uid://3j23c47chjnm" path="res://WildJam_64/LEVELS/CRT Shader/crt_shader.tscn" id="2_vmudu"]
 [ext_resource type="PackedScene" uid="uid://cvnhbtty1ckp3" path="res://WildJam_64/ASSETS/Characters/TheShadowInTheDark/AnimatedShadow.tscn" id="3_i5gpu"]
 [ext_resource type="Material" uid="uid://qn5x1yqjvpi7" path="res://WildJam_64/ASSETS/Enviromental/Materials/ShadowBlack.tres" id="4_ggkpi"]
+[ext_resource type="PackedScene" uid="uid://blgevf8fj5dew" path="res://WildJam_64/UNCUTASSETS/pointer.tscn" id="5_6c7ix"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bj0j4"]
 
@@ -17,6 +18,7 @@ material = SubResource("StandardMaterial3D_w7so5")
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 9
 script = ExtResource("1_k8k6x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -76,6 +78,8 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 material_override = ExtResource("4_ggkpi")
 mesh = SubResource("SphereMesh_yg0y6")
 
-[connection signal="body_entered" from="TheShadowInTheDark2/Skeleton3D/BoneAttachment3D/HitBox" to="." method="_on_hit_box_body_entered"]
+[node name="Compass" type="Node3D" parent="."]
+
+[node name="Pointer" parent="Compass" instance=ExtResource("5_6c7ix")]
 
 [editable path="TheShadowInTheDark2"]
