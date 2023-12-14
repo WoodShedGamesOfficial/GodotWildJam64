@@ -146,9 +146,16 @@ func camera_control():
 	
 	
 	#/syntax
+
+	#world_cursor.global_transform.origin = cursor_pos + Vector3(0, 1, 0)
+	$TheShadowInTheDark2.look_at(cursor_pos, Vector3.UP)
+	var degrees = deg_to_rad(-90)
+	$TheShadowInTheDark2.rotate_y(degrees)
+
 	world_cursor.global_transform.origin = cursor_pos + Vector3(0, 1, 0)
 	player_mesh.look_at(cursor_pos, Vector3.UP)
 	
+
 	
 	pass
 
