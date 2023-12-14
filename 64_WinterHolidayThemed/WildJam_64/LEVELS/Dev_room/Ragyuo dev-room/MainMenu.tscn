@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://h8dduxasepra"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h271o"]
+font_size = 91
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.172549, 0.207843, 0.364706, 1)
+polygon = PackedVector2Array(0, -1, 1, 645, 1152, 643, 1150, 1)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Title" type="Label" parent="Control"]
+offset_left = 195.0
+offset_top = 158.0
+offset_right = 952.0
+offset_bottom = 286.0
+text = " Moment of Calm"
+label_settings = SubResource("LabelSettings_h271o")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 487.0
+offset_right = 1051.0
+offset_bottom = 519.0
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 15
+size_flags_vertical = 13
+text = "Start"
+
+[node name="CreditsButton" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 15
+size_flags_vertical = 13
+text = "Credits"
+
+[node name="ExitButton" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 15
+size_flags_vertical = 13
+text = "Exit"
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]

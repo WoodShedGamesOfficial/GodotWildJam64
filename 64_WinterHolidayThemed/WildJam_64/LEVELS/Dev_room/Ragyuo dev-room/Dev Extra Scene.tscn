@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://chipkwd833ted"]
+[gd_scene load_steps=10 format=3 uid="uid://chipkwd833ted"]
 
 [ext_resource type="Material" uid="uid://ddlgt7lc44p30" path="res://WildJam_64/ASSETS/Enviromental/Materials/OrangeTiles.tres" id="1_7yuxi"]
 [ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="2_hlnai"]
 [ext_resource type="Script" path="res://WildJam_64/LEVELS/Dev_room/Ragyuo dev-room/BearTrap.gd" id="3_5eitu"]
-[ext_resource type="AudioStream" path="res://WildJam_64/WildJam_64/ASSETS/Sounds/Trap.ogg" id="4_t7hw4"]
-[ext_resource type="AudioStream" path="res://WildJam_64/WildJam_64/ASSETS/Sounds/Break.ogg" id="5_tkypg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4w5f6"]
 size = Vector2(300, 300)
@@ -40,6 +38,7 @@ surface_material_override/0 = ExtResource("1_7yuxi")
 shape = SubResource("ConcavePolygonShape3D_h1bgw")
 
 [node name="Player" parent="." instance=ExtResource("2_hlnai")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30729, 0)
 
 [node name="BearTrap" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.0621983, -8.63718)
@@ -59,9 +58,7 @@ shape = SubResource("BoxShape3D_oi1tw")
 shape = SubResource("ConcavePolygonShape3D_t4o0p")
 
 [node name="Trap" type="AudioStreamPlayer" parent="BearTrap"]
-stream = ExtResource("4_t7hw4")
 
 [node name="Break" type="AudioStreamPlayer" parent="BearTrap"]
-stream = ExtResource("5_tkypg")
 
 [connection signal="body_entered" from="BearTrap/AreaTouch" to="BearTrap" method="_on_area_touch_body_entered"]

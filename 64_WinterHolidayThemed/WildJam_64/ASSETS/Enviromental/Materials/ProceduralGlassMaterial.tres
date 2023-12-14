@@ -1,0 +1,24 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://dx2qgmld4a6vt"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kq6im"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i1liv"]
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 1.0
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_kq6im")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gngjj"]
+seamless = true
+noise = SubResource("FastNoiseLite_kq6im")
+
+[resource]
+transparency = 1
+albedo_color = Color(0.807843, 1, 1, 0.6)
+roughness = 0.32
+roughness_texture = SubResource("NoiseTexture2D_gngjj")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_i1liv")
+uv1_scale = Vector3(10, 10, 10)

@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://v8udlgwfb4ri"]
+
+[ext_resource type="Script" path="res://WildJam_64/LEVELS/Main_Menu/Main_Menu_Script.gd" id="1_8seme"]
+[ext_resource type="PackedScene" uid="uid://2n7f7uirl8hb" path="res://WildJam_64/LEVELS/Level_One/LevelOne.tscn" id="2_voeon"]
+[ext_resource type="PackedScene" uid="uid://bsbl7c8pnwee" path="res://WildJam_64/LEVELS/Dev_room/TheQueefsRoom/TQDev_room.tscn" id="3_iw6sx"]
+[ext_resource type="PackedScene" uid="uid://cqwlhwaucqrru" path="res://WildJam_64/ASSETS/Enviromental/terrain_generator.tscn" id="4_aft5q"]
+[ext_resource type="AudioStream" uid="uid://ddeylsyyki0aa" path="res://WildJam_64/AUDIO/Music/MainMenuMusic.ogg" id="5_ryh2j"]
+
+[node name="MainMenu3D" type="Node3D"]
+script = ExtResource("1_8seme")
+Start_Scene = ExtResource("2_voeon")
+personal_Dev_Room = ExtResource("3_iw6sx")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 210.0
+offset_right = 254.0
+offset_bottom = 311.0
+
+[node name="Start" type="Button" parent="GUI/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Credits" type="Button" parent="GUI/VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="Exit" type="Button" parent="GUI/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="GUI/SubViewportContainer"]
+
+[node name="Camera3D" type="Camera3D" parent="GUI/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.21586, 0)
+
+[node name="TerrainGenerator" parent="." instance=ExtResource("4_aft5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ryh2j")
+autoplay = true

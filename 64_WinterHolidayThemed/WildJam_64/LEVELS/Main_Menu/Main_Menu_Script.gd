@@ -1,6 +1,7 @@
-extends Control
+extends Node3D
 
 @onready var anim = $Main_Menu/AnimationPlayer
+@onready var cam_anims = $MeshInstance3D/SubViewportContainer/SubViewport/Camera3D/CamAnims
 
 @export var Start_Scene : PackedScene
 @export var personal_Dev_Room : PackedScene
@@ -9,7 +10,10 @@ extends Control
 
 
 func _ready():
-	print(scene_to_load)
+#	print(scene_to_load)
+	
+#	cam_anims.play("panning")
+#	cam_anims.ing speed_scale = 0.05
 	pass
 
 
@@ -20,6 +24,7 @@ func _on_start_pressed():
 
 func _input(event):
 	if Input.is_action_just_pressed("secretButton"):
+		$AudioStreamPlayer.stream = preload("res://WildJam_64/AUDIO/p-hub-intro.mp3")
 		$AudioStreamPlayer.play()
 		await ($AudioStreamPlayer.finished)
 		get_tree().change_scene_to_packed(personal_Dev_Room)

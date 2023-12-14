@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://becsl7fugusg2"]
+
+[ext_resource type="Script" path="res://WildJam_64/ASSETS/Toys/base_gibScript.gd" id="1_hoykx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jjvpx"]
+radius = 0.0707785
+
+[node name="BaseGib" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44253, 0.0346963, 0)
+collision_layer = 4
+collision_mask = 8
+mass = 0.5
+script = ExtResource("1_hoykx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_jjvpx")

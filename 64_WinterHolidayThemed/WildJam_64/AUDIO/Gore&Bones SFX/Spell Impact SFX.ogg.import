@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://fp45wufrk5yh"
+path="res://.godot/imported/Spell Impact SFX.ogg-cff45c41bae9084302d2ce5d8ade3fd7.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Gore&Bones SFX/Spell Impact SFX.ogg"
+dest_files=["res://.godot/imported/Spell Impact SFX.ogg-cff45c41bae9084302d2ce5d8ade3fd7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

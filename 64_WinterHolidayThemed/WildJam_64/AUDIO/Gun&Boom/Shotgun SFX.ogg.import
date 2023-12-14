@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://rd5j0t6k2scr"
+path="res://.godot/imported/Shotgun SFX.ogg-57cd49e9e828800de91a018d3c58ff94.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Gun&Boom/Shotgun SFX.ogg"
+dest_files=["res://.godot/imported/Shotgun SFX.ogg-57cd49e9e828800de91a018d3c58ff94.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
