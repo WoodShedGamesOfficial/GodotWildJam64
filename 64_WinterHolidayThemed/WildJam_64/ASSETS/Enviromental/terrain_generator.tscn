@@ -28,4 +28,4 @@ skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.164807, 0.986326, 0, -0.986326, 0.164807, 0, 200, 0)
-current = true
+visible = false

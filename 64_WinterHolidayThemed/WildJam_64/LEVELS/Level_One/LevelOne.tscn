@@ -35,9 +35,6 @@ navigation_mesh = SubResource("NavigationMesh_ipo8c")
 [node name="TerrainGenerator" parent="Geometry/NavigationRegion3D" instance=ExtResource("2_lioco")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 Seed = "200222020"
-t_radius = 100
-rock_count = 500
-tree_count = 1000
 town_count = 5
 
 [node name="Characters" type="Node" parent="."]

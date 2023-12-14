@@ -81,6 +81,12 @@ transform = Transform3D(1, 0, 0, 0, 0.967405, -0.253235, 0, 0.253235, 0.967405, 
 [node name="WorldCam" parent="Characters/Player/PlayerOrigin" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.347786, 0.937574, 0, -0.937574, 0.347786, -0.0893517, 8.7139, -1.89066)
 
+[node name="HandAttachment" parent="Characters/Player/TheShadowInTheDark2/Skeleton3D" index="1"]
+transform = Transform3D(0.612639, -0.657587, -0.438468, -0.515245, -0.752969, 0.409342, -0.59933, -0.0248601, -0.800116, -1.87204, 1.16952, -1.23316)
+
+[node name="HeadAttachment" parent="Characters/Player/TheShadowInTheDark2/Skeleton3D" index="2"]
+transform = Transform3D(0.495539, -0.868586, -5.05034e-08, 0.868586, 0.495539, -2.26844e-07, 2.2206e-07, 6.85433e-08, 1, -2.68131, 5.68018, 2.57679e-06)
+
 [node name="ScalableEnemy" parent="Characters" instance=ExtResource("3_7cnv1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.8201, 1.2892, -4.06626)
 base_courage = 1
@@ -138,9 +144,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96524, 2.18677, 0.543148)
 [node name="TheShadowInTheDark3" parent="Toys" instance=ExtResource("13_m77go")]
 transform = Transform3D(0.255993, 0, 0, 0, 0.255993, 0, 0, 0, 0.255993, 7.59959, 1.29222, -1.55361)
 
-
-[node name="BoneAttachment3D" parent="TheShadowInTheDark3/Skeleton3D" index="1"]
+[node name="HandAttachment" parent="Toys/TheShadowInTheDark3/Skeleton3D" index="1"]
 transform = Transform3D(0.612639, -0.657587, -0.438468, -0.515245, -0.752969, 0.409342, -0.59933, -0.0248601, -0.800116, -1.87204, 1.16952, -1.23316)
+
+[node name="HeadAttachment" parent="Toys/TheShadowInTheDark3/Skeleton3D" index="2"]
+transform = Transform3D(0.495539, -0.868586, -5.05034e-08, 0.868586, 0.495539, -2.26844e-07, 2.2206e-07, 6.85433e-08, 1, -2.68131, 5.68018, 2.57679e-06)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Toys"]
 stream = ExtResource("13_tg6mr")
@@ -173,7 +181,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.1713, 0)
 visible = false
 material_override = ExtResource("5_vbhnq")
 mesh = SubResource("PlaneMesh_tp7nj")
-
 
 [editable path="Characters/Player"]
 [editable path="Characters/Player/TheShadowInTheDark2"]

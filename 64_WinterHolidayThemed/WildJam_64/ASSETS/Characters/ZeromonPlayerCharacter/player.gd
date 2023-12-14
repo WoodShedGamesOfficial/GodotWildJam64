@@ -78,7 +78,7 @@ func _process(delta):
 		if mesh_anim.is_playing() == false:
 			mesh_anim.play("Idle")
 	
-	$Compass.look_at(TheDirector.next_town_location)
+	$Compass.look_at(TheDirector.next_town_location[0])
 #	print(str(TheDirector.next_town_location))
 	pass
 
@@ -153,7 +153,7 @@ func camera_control():
 	$TheShadowInTheDark2.rotate_y(degrees)
 
 	world_cursor.global_transform.origin = cursor_pos + Vector3(0, 1, 0)
-	player_mesh.look_at(cursor_pos, Vector3.UP)
+#	player_mesh.look_at(cursor_pos, Vector3.UP)
 	
 
 	
