@@ -1,23 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqthql80cjsxs"]
+[gd_scene load_steps=10 format=3 uid="uid://dqthql80cjsxs"]
 
-[ext_resource type="Script" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/PlayeScriptr.gd" id="1_tuyju"]
-[ext_resource type="Shader" path="res://WildJam_64/LEVELS/CRT Shader/CRT.gdshader" id="2_slnx0"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34wnd"]
-albedo_color = Color(0.219608, 1, 1, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_i54pw"]
-material = SubResource("StandardMaterial3D_34wnd")
+[ext_resource type="Script" path="res://WildJam_64/ASSETS/Characters/ZeromonPlayerCharacter/player.gd" id="1_k8k6x"]
+[ext_resource type="PackedScene" uid="uid://3j23c47chjnm" path="res://WildJam_64/LEVELS/CRT Shader/crt_shader.tscn" id="2_vmudu"]
+[ext_resource type="PackedScene" uid="uid://cvnhbtty1ckp3" path="res://WildJam_64/ASSETS/Characters/TheShadowInTheDark/AnimatedShadow.tscn" id="3_i5gpu"]
+[ext_resource type="Material" uid="uid://qn5x1yqjvpi7" path="res://WildJam_64/ASSETS/Enviromental/Materials/ShadowBlack.tres" id="4_ggkpi"]
+[ext_resource type="PackedScene" uid="uid://blgevf8fj5dew" path="res://WildJam_64/UNCUTASSETS/pointer.tscn" id="5_6c7ix"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bj0j4"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kj6rk"]
-shader = ExtResource("2_slnx0")
-shader_parameter/crt_brightness = 1.0
-shader_parameter/crt_ghost = 5.0
-shader_parameter/crt_grid = 0.4
-shader_parameter/crt_white_noise = 0.0
-shader_parameter/crt_curve = 0.05
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7so5"]
 albedo_color = Color(1, 0, 0, 1)
@@ -25,25 +14,20 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_ed1sa"]
 material = SubResource("StandardMaterial3D_w7so5")
 
+[sub_resource type="SphereMesh" id="SphereMesh_yg0y6"]
+
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_tuyju")
-PLAYERSTATS = {
-"Health": 80,
-"HealthMax": 100,
-"Mana": 100,
-"Stamina": 100,
-"WalkSpeed": 4
-}
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_i54pw")
+collision_mask = 9
+script = ExtResource("1_k8k6x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
 shape = SubResource("CapsuleShape3D_bj0j4")
 
 [node name="PlayerLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -1)
+visible = false
 light_color = Color(0.745098, 0.501961, 0, 1)
 light_energy = 0.5
 light_cull_mask = 4294966273
@@ -58,47 +42,47 @@ current = true
 
 [node name="PlayerGUI" type="Control" parent="PlayerOrigin/WorldCam"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CRT_Shader" type="SubViewportContainer" parent="PlayerOrigin/WorldCam/PlayerGUI"]
-material = SubResource("ShaderMaterial_kj6rk")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader"]
-handle_input_locally = false
-size = Vector2i(1152, 648)
-render_target_update_mode = 4
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="PlayerOrigin/WorldCam/PlayerGUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="SubViewport" type="SubViewport" parent="PlayerOrigin/WorldCam/PlayerGUI/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(40, 40)
 render_target_update_mode = 4
 
 [node name="PlayerHUDCam" type="Camera3D" parent="PlayerOrigin/WorldCam/PlayerGUI/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 7.21784, 1.9285)
 cull_mask = 1047554
 
+[node name="CRT_Shader" parent="PlayerOrigin/WorldCam/PlayerGUI" instance=ExtResource("2_vmudu")]
+visible = false
+
 [node name="MouseCast" type="RayCast3D" parent="PlayerOrigin/WorldCam"]
 
 [node name="AttackDirection" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.2, 0, -0.7)
+visible = false
 mesh = SubResource("BoxMesh_ed1sa")
+
+[node name="TheShadowInTheDark2" parent="." instance=ExtResource("3_i5gpu")]
+transform = Transform3D(-1.11898e-08, 0, -0.255993, 0, 0.255993, 0, 0.255993, 0, -1.11898e-08, 0, 0, 0)
+
+[node name="BoneAttachment3D" parent="TheShadowInTheDark2/Skeleton3D" index="1"]
+transform = Transform3D(0.612639, -0.657587, -0.438468, -0.515245, -0.752969, 0.409342, -0.59933, -0.0248601, -0.800116, -1.87204, 1.16952, -1.23316)
+
+[node name="Cursor" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+material_override = ExtResource("4_ggkpi")
+mesh = SubResource("SphereMesh_yg0y6")
+
+[node name="Compass" type="Node3D" parent="."]
+
+[node name="Pointer" parent="Compass" instance=ExtResource("5_6c7ix")]
+
+[editable path="TheShadowInTheDark2"]

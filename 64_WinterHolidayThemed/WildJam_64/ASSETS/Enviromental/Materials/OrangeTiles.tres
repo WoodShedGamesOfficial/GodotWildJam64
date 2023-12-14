@@ -5,4 +5,7 @@
 [resource]
 albedo_color = Color(1, 0.631373, 0.396078, 1)
 albedo_texture = ExtResource("1_oe5gc")
+heightmap_scale = -6.215
 uv1_scale = Vector3(3, 3, 3)
+grow_amount = 16.0
+point_size = 9.0

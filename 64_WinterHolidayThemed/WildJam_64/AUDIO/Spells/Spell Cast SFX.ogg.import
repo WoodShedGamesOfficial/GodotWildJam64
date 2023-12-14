@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c8mw2copdl3my"
+path="res://.godot/imported/Spell Cast SFX.ogg-1757a30a0ed6a14ec938f100ed75ccd7.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Spells/Spell Cast SFX.ogg"
+dest_files=["res://.godot/imported/Spell Cast SFX.ogg-1757a30a0ed6a14ec938f100ed75ccd7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

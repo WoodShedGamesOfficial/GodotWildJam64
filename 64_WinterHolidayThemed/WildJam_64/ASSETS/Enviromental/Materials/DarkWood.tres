@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bgq8pcl2xn38r"]
+
+[ext_resource type="Texture2D" uid="uid://dbqaq5xlm6npb" path="res://WildJam_64/UNCUTASSETS/textures/WoodSiding009_2K-JPG/WoodSiding009_2K-JPG_Color.jpg" id="1_yffkk"]
+[ext_resource type="Texture2D" uid="uid://2rn7km7e6tq3" path="res://WildJam_64/UNCUTASSETS/textures/WoodSiding009_2K-JPG/WoodSiding009_2K-JPG_Displacement.jpg" id="2_iwnak"]
+[ext_resource type="Texture2D" uid="uid://q4xep6xumhrg" path="res://WildJam_64/UNCUTASSETS/textures/WoodSiding009_2K-JPG/WoodSiding009_2K-JPG_NormalGL.jpg" id="3_6u3lu"]
+[ext_resource type="Texture2D" uid="uid://1gb2e7ipqutf" path="res://WildJam_64/UNCUTASSETS/textures/WoodSiding009_2K-JPG/WoodSiding009_2K-JPG_Roughness.jpg" id="4_ffunq"]
+
+[resource]
+albedo_color = Color(0.560784, 0.262745, 0.0392157, 1)
+albedo_texture = ExtResource("1_yffkk")
+roughness_texture = ExtResource("4_ffunq")
+normal_enabled = true
+normal_texture = ExtResource("3_6u3lu")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_iwnak")
+uv1_scale = Vector3(10, 10, 10)

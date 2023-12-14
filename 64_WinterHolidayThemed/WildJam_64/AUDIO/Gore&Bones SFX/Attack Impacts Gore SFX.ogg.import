@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ixba2b4bo21c"
+path="res://.godot/imported/Attack Impacts Gore SFX.ogg-f136fc8a3bf4e4f5818c499bee9624ff.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Gore&Bones SFX/Attack Impacts Gore SFX.ogg"
+dest_files=["res://.godot/imported/Attack Impacts Gore SFX.ogg-f136fc8a3bf4e4f5818c499bee9624ff.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
