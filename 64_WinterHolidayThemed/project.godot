@@ -19,10 +19,6 @@ config/icon="res://icon.svg"
 
 TheDirector="*res://WildJam_64/SCRIPTS/globals/TheDirector.gd"
 
-[display]
-
-window/size/mode=3
-
 [input]
 
 ui_left={
@@ -113,7 +109,6 @@ secretButton={
 3d_physics/layer_2="Enemies"
 3d_physics/layer_3="Toys"
 3d_physics/layer_4="Enviroment"
-
 config/name="64 Winter Holiday Themed"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
@@ -121,4 +116,3 @@ config/icon="res://icon.svg"
 [rendering]
 
 environment/defaults/default_clear_color=Color(1, 1, 1, 1)
-
