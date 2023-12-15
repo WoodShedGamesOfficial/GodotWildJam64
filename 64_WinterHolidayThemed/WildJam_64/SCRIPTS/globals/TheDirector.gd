@@ -12,3 +12,5 @@ extends Node
 @onready var enemies_to_pass : int
 
 @onready var town_count : int
+
+@onready var visible_cursor_pos : Vector3

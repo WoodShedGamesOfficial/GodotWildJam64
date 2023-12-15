@@ -6,4 +6,5 @@ enum Effects{
 }
 
 func set_effect(effect: Effects):
+	pass
 	

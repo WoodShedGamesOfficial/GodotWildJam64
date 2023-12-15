@@ -145,7 +145,7 @@ func generate_town(): #/TODO: towns past 1 break shader when rendering
 	for i in town_count:
 		var towni = town.instantiate()
 		var pos = Vector3(randf_range(-500, 600),500,randf_range(-400,500))
-		var fnl_pos = get_down_ray(pos)
+		var fnl_pos = Vector3(get_down_ray(pos))
 		var rot = Vector3(0,randf_range(0,360),0)
 		
 		
@@ -156,7 +156,7 @@ func generate_town(): #/TODO: towns past 1 break shader when rendering
 		towni.global_transform.origin = fnl_pos
 		towni.rotation_degrees = rot
 		town_loc = fnl_pos
-		
+		TheDirector.next_town_location.append(town_loc)
 #		TheDirector.next_town_location = town_loc
 		
 		print("Town Location: " + str(town_loc))
@@ -195,8 +195,11 @@ func level_terrain(position: Vector3, radius: int, level: float):
 
 func spawn_enemies():
 	
+	print(str(TheDirector.next_town_location[0]))
+	if (get_tree().get_current_scene().get_name() == "MainMenu3D"):
+		return
 	get_tree().get_root().add_child(enemy)
-	enemy.global_transform.origin = TheDirector.next_town_location
+	enemy.global_transform.origin = TheDirector.next_town_location[randi_range(0,(town_count - 1))]
 	enemy.global_transform.origin.y += 15
 	enemy.transform.origin.z += 30
 	
@@ -226,6 +229,7 @@ func report_to_the_director():
 	var town_report : int 
 	
 	for child in get_children():
+
 		town_report += 1
 		TheDirector.town_count += 1
 	

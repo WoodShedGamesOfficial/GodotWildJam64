@@ -11,6 +11,7 @@ class_name Enemy
 @export var walk_speed: float = 1.0
 @export var base_courage: int = 5
 @export var base_fear: int = 1
+@export var suspicion_growth : float = 0.0
 
 enum STATE {IDLE, PATROL, SCARED, SUSPICIOUS, COMBAT}
 
@@ -19,7 +20,7 @@ enum STATE {IDLE, PATROL, SCARED, SUSPICIOUS, COMBAT}
 @onready var navigation_agent_3d = $NavigationAgent3D
 @onready var player_pos = TheDirector.player_position_on_map
 @onready var human_gibs_path = preload("res://WildJam_64/ASSETS/Toys/human_gibs.tscn")
-@onready var enemy_tier = (TheDirector.player_infamy + randi_range(0, 5))
+@onready var enemy_tier = randi_range(0, TheDirector.player_infamy)
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -27,6 +28,7 @@ var suspicion : float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	await get_tree().process_frame
 	add_to_group("Enemy")
 	
 	#/equips weapon and armor
@@ -50,14 +52,19 @@ func _ready():
 	match enemy_tier:
 		0:
 			print("farmer")
+			suspicion_growth += randf_range(1, 3)
 		1:
 			print('angry townsfolk')
+			suspicion_growth += randf_range(0.8, 2.5)
 		2:
 			print('cop')
+			suspicion_growth += randf_range(0.5, TheDirector.player_infamy)
 		3:
 			print("swat")
+			suspicion_growth += randf_range(10, 30)
 		4:
 			print("soldier")
+			suspicion_growth += randf_range(0.2, 2)
 		5:
 			print("man in black")
 	
@@ -125,12 +132,12 @@ func _physics_process(delta):
 	enemy_movement()
 	if $DetectionCast.get_collider() != null:
 		if $DetectionCast.get_collider().is_in_group("Player"):
-			suspicion += 1
+			suspicion += suspicion_growth
 		else:
 			suspicion -= 0.5
 	else:
 		suspicion -= 0.5
-	print(suspicion)
+	#print(suspicion)
 	
 	move_and_slide()
 	pass
@@ -170,23 +177,23 @@ func get_next_location():
 	
 	match state:
 		STATE.IDLE:
-			print("Knock it off, I'm busy")
+			#print("Knock it off, I'm busy")
 			navigation_agent_3d.target_position = self.global_transform.origin
 #			navigation_agent_3d.get_next_path_position()
 		STATE.PATROL:
-			print("I'm getting paid for this, right?")
+			#print("I'm getting paid for this, right?")
 			navigation_agent_3d.target_position = Vector3(randi_range(-5,5), randi_range(-5,5), randi_range(-5,5))
 #			navigation_agent_3d.get_next_path_position()
 		STATE.SUSPICIOUS:
-			print("dafuq is dat?")
+			#print("dafuq is dat?")
 			navigation_agent_3d.target_position = TheDirector.player_position_on_map
 #			navigation_agent_3d.get_next_path_position()
 		STATE.SCARED:
-			print("WHAT IS THAT THING, GET IT AWAY")
+			#print("WHAT IS THAT THING, GET IT AWAY")
 			runaway()
 #			navigation_agent_3d.get_next_path_position()
 		STATE.COMBAT:
-			print("SOUND THE ALARM")
+			#print("SOUND THE ALARM")
 			navigation_agent_3d.target_position = TheDirector.player_position_on_map
 #			navigation_agent_3d.get_next_path_position()
 			

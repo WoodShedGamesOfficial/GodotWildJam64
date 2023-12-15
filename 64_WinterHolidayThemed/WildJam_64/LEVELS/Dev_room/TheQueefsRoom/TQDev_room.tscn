@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bsbl7c8pnwee"]
+[gd_scene load_steps=33 format=3 uid="uid://bsbl7c8pnwee"]
 
 [ext_resource type="Texture2D" uid="uid://b03w8rqei1cwo" path="res://WildJam_64/UNCUTASSETS/textures/texture_08.png" id="1_5snvr"]
 [ext_resource type="Script" path="res://WildJam_64/SCRIPTS/Generator.gd" id="1_hcdim"]
@@ -19,6 +19,12 @@
 [ext_resource type="PackedScene" uid="uid://dkegwpi64ys7y" path="res://WildJam_64/ASSETS/Characters/TheShadowInTheDark/TheShadowInTheDark.glb" id="12_l4k07"]
 [ext_resource type="PackedScene" uid="uid://cvnhbtty1ckp3" path="res://WildJam_64/ASSETS/Characters/TheShadowInTheDark/AnimatedShadow.tscn" id="13_m77go"]
 [ext_resource type="AudioStream" uid="uid://dgt6lj7ou6ljw" path="res://WildJam_64/AUDIO/Environment/CarRunning.ogg" id="13_tg6mr"]
+[ext_resource type="PackedScene" uid="uid://cnuslb7i7xuym" path="res://WildJam_64/ASSETS/Characters/QueefsBasicEnemies/anger_man.tscn" id="20_cvq8p"]
+[ext_resource type="PackedScene" uid="uid://dbdcp4ya2ufjs" path="res://WildJam_64/ASSETS/Characters/QueefsBasicEnemies/cop.tscn" id="21_dntav"]
+[ext_resource type="PackedScene" uid="uid://cllhnnigqyo6o" path="res://WildJam_64/ASSETS/Characters/QueefsBasicEnemies/farmer.tscn" id="22_xhvqb"]
+[ext_resource type="PackedScene" uid="uid://jqfkymqvxdi0" path="res://WildJam_64/ASSETS/Characters/QueefsBasicEnemies/hero.tscn" id="23_2n3jj"]
+[ext_resource type="PackedScene" uid="uid://bdxupmrre16pn" path="res://WildJam_64/ASSETS/Characters/QueefsBasicEnemies/soldier.tscn" id="24_hhksy"]
+[ext_resource type="PackedScene" uid="uid://w72yf1td641u" path="res://WildJam_64/ASSETS/Characters/QueefsBasicEnemies/swat.tscn" id="25_4eef7"]
 
 [sub_resource type="Environment" id="Environment_6i1ym"]
 background_mode = 1
@@ -80,6 +86,7 @@ transform = Transform3D(1, 0, 0, 0, 0.967405, -0.253235, 0, 0.253235, 0.967405, 
 
 [node name="WorldCam" parent="Characters/Player/PlayerOrigin" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.347786, 0.937574, 0, -0.937574, 0.347786, -0.0893517, 8.7139, -1.89066)
+current = false
 
 [node name="ScalableEnemy" parent="Characters" instance=ExtResource("3_7cnv1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.8201, 1.2892, -4.06626)
@@ -138,9 +145,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96524, 2.18677, 0.543148)
 [node name="TheShadowInTheDark3" parent="Toys" instance=ExtResource("13_m77go")]
 transform = Transform3D(0.255993, 0, 0, 0, 0.255993, 0, 0, 0, 0.255993, 7.59959, 1.29222, -1.55361)
 
-
-[node name="BoneAttachment3D" parent="TheShadowInTheDark3/Skeleton3D" index="1"]
+[node name="HandAttachment" parent="Toys/TheShadowInTheDark3/Skeleton3D" index="1"]
 transform = Transform3D(0.612639, -0.657587, -0.438468, -0.515245, -0.752969, 0.409342, -0.59933, -0.0248601, -0.800116, -1.87204, 1.16952, -1.23316)
+
+[node name="HeadAttachment" parent="Toys/TheShadowInTheDark3/Skeleton3D" index="2"]
+transform = Transform3D(0.495539, -0.868586, -5.05034e-08, 0.868586, 0.495539, -2.26844e-07, 2.2206e-07, 6.85433e-08, 1, -2.68131, 5.68018, 2.57679e-06)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Toys"]
 stream = ExtResource("13_tg6mr")
@@ -174,6 +183,68 @@ visible = false
 material_override = ExtResource("5_vbhnq")
 mesh = SubResource("PlaneMesh_tp7nj")
 
+[node name="AngerMan" parent="." instance=ExtResource("20_cvq8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 129.139, 0, -23.0229)
+
+[node name="Cop" parent="." instance=ExtResource("21_dntav")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120.76, 0, -29.8412)
+
+[node name="Farmer" parent="." instance=ExtResource("22_xhvqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122.902, 0, -35.4891)
+
+[node name="Hero" parent="." instance=ExtResource("23_2n3jj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121.043, 0, -8.78307)
+
+[node name="Soldier" parent="." instance=ExtResource("24_hhksy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.927, 0, -35.9421)
+
+[node name="Swat" parent="." instance=ExtResource("25_4eef7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 104.791, 0, -16.5487)
+
+[node name="AngerMan2" parent="." instance=ExtResource("20_cvq8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.005, 0, -37.4386)
+
+[node name="AngerMan3" parent="." instance=ExtResource("20_cvq8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.408, -9.53674e-07, -38.1775)
+
+[node name="AngerMan4" parent="." instance=ExtResource("20_cvq8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.4188, 0, -28.2443)
+
+[node name="AngerMan5" parent="." instance=ExtResource("20_cvq8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.245, 0, -24.5837)
+
+[node name="Cop2" parent="." instance=ExtResource("21_dntav")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.573, 0, -21.7723)
+
+[node name="Hero2" parent="." instance=ExtResource("23_2n3jj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 141.947, 0, -26.4785)
+
+[node name="ScalableEnemy" parent="." instance=ExtResource("3_7cnv1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 144.532, 0, -14.8242)
+
+[node name="Soldier2" parent="." instance=ExtResource("24_hhksy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 157.516, 0, -29.7406)
+
+[node name="Swat2" parent="." instance=ExtResource("25_4eef7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 139.288, 0, -40.0151)
+
+[node name="AngerMan6" parent="." instance=ExtResource("20_cvq8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.244, 0, -12.5853)
+
+[node name="AngerMan7" parent="." instance=ExtResource("20_cvq8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.484, 0, -18.9008)
+
+[node name="AngerMan8" parent="." instance=ExtResource("20_cvq8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 168.541, 0, -9.82009)
+
+[node name="Hero3" parent="." instance=ExtResource("23_2n3jj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 172.977, 0, -20.6098)
+
+[node name="Swat3" parent="." instance=ExtResource("25_4eef7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.584, 0, -5.49607)
+
+[node name="Soldier3" parent="." instance=ExtResource("24_hhksy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.868, 0, -5.08156)
 
 [editable path="Characters/Player"]
 [editable path="Characters/Player/TheShadowInTheDark2"]

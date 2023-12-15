@@ -108,7 +108,6 @@ size = Vector3(6, 4, 6)
 [node name="Characters" type="Node" parent="."]
 
 [node name="Player" parent="Characters" instance=ExtResource("2_c8gxt")]
-collision_mask = 9
 script = ExtResource("3_6yw14")
 
 [node name="ExeriorCamTEST" type="Camera3D" parent="Characters"]
