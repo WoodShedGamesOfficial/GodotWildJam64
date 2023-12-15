@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://WildJam_64/LEVELS/Dev_room/QbiesRoom/SnowShader.gdshader" id="1_v4sdv"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_y3dqx"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xykm8"]
 viewport_path = NodePath("Terrain/Terrain/SubViewport2")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_an7bf"]
@@ -29,7 +29,7 @@ noise = SubResource("FastNoiseLite_ir4t1")
 [resource]
 render_priority = 0
 shader = ExtResource("1_v4sdv")
-shader_parameter/snow_height = 1.485
+shader_parameter/snow_height = 1.25
 shader_parameter/world_xy_anchor = Vector2(317.678, 422.167)
 shader_parameter/world_size_anchor = Vector2(50, 70)
 shader_parameter/scatter_range = Vector2(-1, 0.43)
@@ -41,4 +41,4 @@ shader_parameter/mix_noise_size = 0.015
 shader_parameter/mix_noise = SubResource("NoiseTexture2D_4aqnx")
 shader_parameter/snow_normal = SubResource("NoiseTexture2D_2ilbr")
 shader_parameter/snow_color_gradient = SubResource("GradientTexture1D_qtorc")
-shader_parameter/mask_texture = SubResource("ViewportTexture_y3dqx")
+shader_parameter/mask_texture = SubResource("ViewportTexture_xykm8")

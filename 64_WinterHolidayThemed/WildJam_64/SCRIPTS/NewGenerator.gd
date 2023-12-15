@@ -109,6 +109,7 @@ func generate_town(): #/TODO: towns past 1 break shader when rendering
 	pass
 
 func generate_terrain():
+	set_seed(Seed)
 	var a_mesh:ArrayMesh
 	var st = SurfaceTool.new()
 	
@@ -179,14 +180,18 @@ func generate_trees():
 	
 	for i in tree_count:
 		var tpos = Vector3(randf_range(MIN_X, MAX_X),0,randf_range(MIN_Z,MAX_Z))
-		tpos.y = 500
-		var treei = tree.instantiate()
-		add_child(treei)
-		var fnl_tpos = get_down_ray(tpos)
-		var rot = Vector3(0,randf_range(0,360),0)
-		treei.global_transform.origin = fnl_tpos
-		treei.rotation_degrees = rot
-	pass
+		var distance_to_position = town_loc.distance_to(tpos)
+		if distance_to_position < t_radius:
+			return
+		if not distance_to_position < t_radius:
+			tpos.y = 500
+			var treei = tree.instantiate()
+			add_child(treei)
+			var fnl_tpos = get_down_ray(tpos)
+			var rot = Vector3(0,randf_range(0,360),0)
+			treei.global_transform.origin = fnl_tpos
+			treei.rotation_degrees = rot
+			return
 	
 func get_down_ray(pos: Vector3) -> Vector3: #/snaps assets to ground
 	var length = 1000
