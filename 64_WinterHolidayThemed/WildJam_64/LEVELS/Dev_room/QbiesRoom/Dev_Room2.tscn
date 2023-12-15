@@ -144,6 +144,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("ViewportTexture_koj33")
 
+[node name="HandAttachment" parent="Characters/Player/TheShadowInTheDark2/Skeleton3D" index="1"]
+transform = Transform3D(0.612639, -0.657587, -0.438468, -0.515245, -0.752969, 0.409342, -0.59933, -0.0248601, -0.800116, -1.87204, 1.16952, -1.23316)
+
+[node name="HeadAttachment" parent="Characters/Player/TheShadowInTheDark2/Skeleton3D" index="2"]
+transform = Transform3D(0.495539, -0.868586, -5.05034e-08, 0.868586, 0.495539, -2.26844e-07, 2.2206e-07, 6.85433e-08, 1, -2.68131, 5.68018, 2.57679e-06)
+
 [node name="EffectSpawner" type="Node3D" parent="Characters/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127829, 0, -1.27759)
 script = ExtResource("4_b6vt7")

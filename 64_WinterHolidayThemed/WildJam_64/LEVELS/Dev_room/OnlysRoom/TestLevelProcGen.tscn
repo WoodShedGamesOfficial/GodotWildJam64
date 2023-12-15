@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ivclf2p5ugcq"]
+[gd_scene load_steps=18 format=3 uid="uid://ivclf2p5ugcq"]
 
 [ext_resource type="Material" uid="uid://d1a62a42kco1y" path="res://WildJam_64/LEVELS/Dev_room/QbiesRoom/SnowMaterial.tres" id="1_amln1"]
 [ext_resource type="Script" path="res://WildJam_64/SCRIPTS/NewGenerator.gd" id="1_kir1u"]
@@ -8,10 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://dr1e1d6j23pvw" path="res://WildJam_64/ASSETS/Enviromental/Rocks/rock.res" id="3_ass5h"]
 [ext_resource type="PackedScene" uid="uid://dfttfshl5lcco" path="res://WildJam_64/ASSETS/Enviromental/Trees/tree.res" id="4_qfigb"]
 [ext_resource type="PackedScene" uid="uid://dunk8pewfy6rh" path="res://WildJam_64/ASSETS/Enviromental/Town/Town.res" id="5_q8o4d"]
+[ext_resource type="PackedScene" uid="uid://c5edxtd3dq4h0" path="res://WildJam_64/LEVELS/Dev_room/QbiesRoom/SnowWorld.tscn" id="7_hs3so"]
 [ext_resource type="PackedScene" uid="uid://dqthql80cjsxs" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/player.tscn" id="7_va7dq"]
 [ext_resource type="Script" path="res://WildJam_64/LEVELS/Dev_room/QbiesRoom/WorldEnvironment.gd" id="10_lvdcw"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_sy8nt"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_v4q01"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_0tjii"]
 
@@ -28,8 +29,8 @@ ambient_light_energy = 0.0
 reflected_light_source = 2
 fog_enabled = true
 fog_light_color = Color(0.168627, 0.188235, 0.215686, 1)
-fog_light_energy = 0.15
-fog_density = 0.1469
+fog_light_energy = 0.05
+fog_density = 0.189
 fog_aerial_perspective = 0.01
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3r4e1"]
@@ -39,7 +40,7 @@ fog_aerial_perspective = 0.01
 [node name="Terrain" type="Node" parent="."]
 
 [node name="Terrain" type="MeshInstance3D" parent="Terrain" node_paths=PackedStringArray("cam")]
-mesh = SubResource("ArrayMesh_sy8nt")
+mesh = SubResource("ArrayMesh_v4q01")
 script = ExtResource("1_kir1u")
 land_mat = ExtResource("2_n8lx2")
 freq = 0.075
@@ -53,7 +54,21 @@ rock_count = 10
 tree = ExtResource("4_qfigb")
 tree_count = 500
 town = ExtResource("5_q8o4d")
-update = true
+
+[node name="SubViewport2" type="SubViewport" parent="Terrain/Terrain"]
+disable_3d = true
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(500, 700)
+render_target_update_mode = 4
+
+[node name="WorldRoot" parent="Terrain/Terrain/SubViewport2" instance=ExtResource("7_hs3so")]
+
+[node name="Camera2D" parent="Terrain/Terrain/SubViewport2/WorldRoot" index="0"]
+position = Vector2(3176.78, 4221.67)
+
+[node name="Sprite2D" parent="Terrain/Terrain/SubViewport2/WorldRoot" index="1"]
+visible = false
 
 [node name="Characters" type="Node" parent="."]
 
@@ -96,5 +111,6 @@ script = ExtResource("10_lvdcw")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.998498, 0.0547932, 0, -0.0547932, -0.998498, 0, 117.445, 0)
 
+[editable path="Terrain/Terrain/SubViewport2/WorldRoot"]
 [editable path="Characters/Player"]
 [editable path="Characters/Player/TheShadowInTheDark2"]

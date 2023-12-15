@@ -64,7 +64,6 @@ func _ready():
 	generate_trees()
 
 #Snow Code:
-
 	$SubViewport2/WorldRoot/Camera2D.make_current()
 #	$SubViewport2.own_world_2d = true
 	get_surface_override_material(0).set_shader_parameter("mask_texture", $SubViewport2.get_texture())
@@ -117,7 +116,6 @@ func generate_terrain():
 	terrain.mesh = a_mesh
 	terrain.create_trimesh_collision()
 	print("terrain Generated")
-
 
 func draw_sphere(pos:Vector3):
 	var ins = MeshInstance3D.new()
@@ -189,8 +187,4 @@ func _process(_delta):
 	for obj in footprint_objs.keys():
 		footprint_objs[obj].global_position = Vector2(obj.global_position.x, obj.global_position.z) * pixel_per_unit + Vector2(0.0,350)
 #		print("setting trail pos to ",footprint_objs[obj].position, "from object ", Vector2(obj.global_position.x, obj.global_position.y) * pixel_per_unit )
-
-	
-	
-
 	pass
