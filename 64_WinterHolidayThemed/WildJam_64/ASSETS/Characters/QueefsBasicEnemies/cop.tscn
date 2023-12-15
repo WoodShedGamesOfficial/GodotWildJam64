@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbdcp4ya2ufjs"]
+
+[ext_resource type="PackedScene" uid="uid://dc0vk72i8hoe7" path="res://WildJam_64/ASSETS/Characters/QueefsBasicEnemies/ScalableEnemy.tscn" id="1_n72b6"]
+[ext_resource type="Script" path="res://WildJam_64/SCRIPTS/cop.gd" id="2_2w6r0"]
+
+[node name="Cop" instance=ExtResource("1_n72b6")]
+script = ExtResource("2_2w6r0")
+base_courage = 6
+suspicion_growth = 0.6
+
+[editable path="MeshAndBone/Skeleton3D/BoneAttachment3D/EnemyWeapons"]

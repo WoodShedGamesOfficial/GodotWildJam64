@@ -11,6 +11,7 @@ class_name Enemy
 @export var walk_speed: float = 1.0
 @export var base_courage: int = 5
 @export var base_fear: int = 1
+@export var suspicion_growth : float = 0.0
 
 enum STATE {IDLE, PATROL, SCARED, SUSPICIOUS, COMBAT}
 
@@ -19,7 +20,7 @@ enum STATE {IDLE, PATROL, SCARED, SUSPICIOUS, COMBAT}
 @onready var navigation_agent_3d = $NavigationAgent3D
 @onready var player_pos = TheDirector.player_position_on_map
 @onready var human_gibs_path = preload("res://WildJam_64/ASSETS/Toys/human_gibs.tscn")
-@onready var enemy_tier = (TheDirector.player_infamy + randi_range(0, 5))
+@onready var enemy_tier = randi_range(0, TheDirector.player_infamy)
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -50,14 +51,19 @@ func _ready():
 	match enemy_tier:
 		0:
 			print("farmer")
+			suspicion_growth += randf_range(1, 3)
 		1:
 			print('angry townsfolk')
+			suspicion_growth += randf_range(0.8, 2.5)
 		2:
 			print('cop')
+			suspicion_growth += randf_range(0.5, TheDirector.player_infamy)
 		3:
 			print("swat")
+			suspicion_growth += randf_range(10, 30)
 		4:
 			print("soldier")
+			suspicion_growth += randf_range(0.2, 2)
 		5:
 			print("man in black")
 	
@@ -125,7 +131,7 @@ func _physics_process(delta):
 	enemy_movement()
 	if $DetectionCast.get_collider() != null:
 		if $DetectionCast.get_collider().is_in_group("Player"):
-			suspicion += 1
+			suspicion += suspicion_growth
 		else:
 			suspicion -= 0.5
 	else:

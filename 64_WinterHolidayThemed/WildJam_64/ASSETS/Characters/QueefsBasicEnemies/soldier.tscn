@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdxupmrre16pn"]
+
+[ext_resource type="PackedScene" uid="uid://dc0vk72i8hoe7" path="res://WildJam_64/ASSETS/Characters/QueefsBasicEnemies/ScalableEnemy.tscn" id="1_75qsx"]
+[ext_resource type="Script" path="res://WildJam_64/SCRIPTS/soldier.gd" id="2_vy61g"]
+
+[node name="Soldier" instance=ExtResource("1_75qsx")]
+script = ExtResource("2_vy61g")
+base_courage = 9
+suspicion_growth = 0.1
+
+[editable path="MeshAndBone/Skeleton3D/BoneAttachment3D/EnemyWeapons"]

@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 TheDirector="*res://WildJam_64/SCRIPTS/globals/TheDirector.gd"
 
+[display]
+
+window/size/mode=3
+
 [input]
 
 ui_left={
