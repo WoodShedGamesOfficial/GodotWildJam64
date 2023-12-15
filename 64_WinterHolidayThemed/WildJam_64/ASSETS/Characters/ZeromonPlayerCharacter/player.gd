@@ -3,7 +3,7 @@ extends CharacterBody3D
 #/declerations
 @onready var crt_shader = $PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader/Container
 @onready var playercam = $PlayerOrigin/WorldCam
-@onready var world_cursor = $Cursor
+#@onready var world_cursor = $Cursor
 
 @export var PLAYERSTATS = {
 	"Health" : 100,
@@ -26,7 +26,10 @@ extends CharacterBody3D
 @onready var player_mesh = $TheShadowInTheDark2
 
 @onready var pointer_path = preload("res://WildJam_64/UNCUTASSETS/pointer.tscn")
-
+@onready var cursor_path = preload("res://WildJam_64/ASSETS/Toys/cursor.tscn")
+@onready var cursor = cursor_path.instantiate()
+@onready var old_diff : Vector3 = Vector3.ZERO
+@onready var total_diff : Vector3 = Vector3.ZERO
 
 const JUMP_VELOCITY = 4.5
 
@@ -41,6 +44,8 @@ func _ready():
 	mesh_anim.play("Idle")
 	
 	var pointer = pointer_path.instantiate()
+	
+	get_tree().get_root().add_child(cursor)
 	
 	for towns in TheDirector.town_count:
 		$Compass.add_child(pointer)
@@ -78,6 +83,7 @@ func _process(delta):
 		if mesh_anim.is_playing() == false:
 			mesh_anim.play("Idle")
 	
+	camera_control()
 	$Compass.look_at(TheDirector.next_town_location[0])
 #	print(str(TheDirector.next_town_location))
 	pass
@@ -107,7 +113,7 @@ func _physics_process(delta):
 	
 	
 #	look_at(ScreenPointToRay(), Vector3.UP)
-	camera_control()
+#	camera_control()
 	move_and_slide()
 	
 	
@@ -136,26 +142,23 @@ func camera_control():
 ##   $PlayerOrigin.transform.basis.rotate_y(0.01)
 	
 	#/vars:
-	var player_pos = global_transform.origin
+	var player_pos = transform.origin
 	var drop_plane = Plane(Vector3(0, 1, 0), player_pos.y)
 	var ray_length = 1000
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = playercam.project_ray_origin(mouse_pos)
 	var to = from + playercam.project_ray_normal(mouse_pos) * ray_length
 	var cursor_pos = drop_plane.intersects_ray(from, to)
-	
-	
+#	print("Cursor - Player: " + str(cursor_pos - player_pos))
 	#/syntax
-
 	#world_cursor.global_transform.origin = cursor_pos + Vector3(0, 1, 0)
 	$TheShadowInTheDark2.look_at(cursor_pos, Vector3.UP)
 	var degrees = deg_to_rad(-90)
 	$TheShadowInTheDark2.rotate_y(degrees)
 
-	world_cursor.global_transform.origin = cursor_pos + Vector3(0, 1, 0)
+	cursor.transform.origin = cursor_pos + Vector3(0, 1, 0)
 #	player_mesh.look_at(cursor_pos, Vector3.UP)
 	
-
 	
 	pass
 

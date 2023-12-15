@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://7b4jebjfy568"]
+
+[ext_resource type="Material" uid="uid://qn5x1yqjvpi7" path="res://WildJam_64/ASSETS/Enviromental/Materials/ShadowBlack.tres" id="1_s14hf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_yg0y6"]
+
+[node name="Cursor" type="MeshInstance3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+material_override = ExtResource("1_s14hf")
+mesh = SubResource("SphereMesh_yg0y6")

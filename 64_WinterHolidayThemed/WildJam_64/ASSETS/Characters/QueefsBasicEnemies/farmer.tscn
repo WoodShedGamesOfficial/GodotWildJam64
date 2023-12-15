@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cllhnnigqyo6o"]
+
+[ext_resource type="PackedScene" uid="uid://dc0vk72i8hoe7" path="res://WildJam_64/ASSETS/Characters/QueefsBasicEnemies/ScalableEnemy.tscn" id="1_oyup0"]
+[ext_resource type="Script" path="res://WildJam_64/SCRIPTS/farmer.gd" id="2_alxar"]
+
+[node name="Farmer" instance=ExtResource("1_oyup0")]
+script = ExtResource("2_alxar")
+suspicion_growth = 2.0
+
+[editable path="MeshAndBone/Skeleton3D/BoneAttachment3D/EnemyWeapons"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnuslb7i7xuym"]
+
+[ext_resource type="PackedScene" uid="uid://dc0vk72i8hoe7" path="res://WildJam_64/ASSETS/Characters/QueefsBasicEnemies/ScalableEnemy.tscn" id="1_v1151"]
+[ext_resource type="Script" path="res://WildJam_64/SCRIPTS/angerman.gd" id="2_cj4q3"]
+
+[node name="AngerMan" instance=ExtResource("1_v1151")]
+script = ExtResource("2_cj4q3")
+health = 50
+damage = 20
+suspicion_growth = 3.0
+
+[editable path="MeshAndBone/Skeleton3D/BoneAttachment3D/EnemyWeapons"]
