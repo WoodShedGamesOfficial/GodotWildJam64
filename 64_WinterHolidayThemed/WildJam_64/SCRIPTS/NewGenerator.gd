@@ -49,30 +49,63 @@ const MIN_X = 0
 const MAX_X = 500
 const MIN_Z = 0
 const MAX_Z = 500
+const MIN_X_T = 50
+const MAX_X_T = 400
+const MIN_Z_T= 50
+const MAX_Z_T= 400
 
 func _ready():
 	#Terrain Code:
 	if Engine.is_editor_hint():
 		set_seed(Seed)
+		generate_town()
+		print("town Generated")
+		var tci = town_count
+#		for i in tci :
+#			print("Town Generated at: "+str(TheDirector.next_town_location[i]))
 		generate_terrain()
 		print("terrain Generated")
 		generate_trees()
 		print("trees Generated")
 		pass
 
+	generate_town()
 	generate_terrain()
 	generate_trees()
 
 #Snow Code:
 	$SubViewport2/WorldRoot/Camera2D.make_current()
+
 #	$SubViewport2.own_world_2d = true
-	get_surface_override_material(0).set_shader_parameter("mask_texture", $SubViewport2.get_texture())
+	snow_material.set_shader_parameter("mask_texture", $SubViewport2.get_texture())
 	for c in get_tree().get_nodes_in_group("footprint"):
 		add_footprint(c)
 
 func set_seed(val:String)->void:
 	current_seed = Seed.hash()
 	seed(current_seed)
+	pass
+
+func generate_town(): #/TODO: towns past 1 break shader when rendering
+	var town_seed = Seed.hash()
+	seed(town_seed*81.1237913)
+	
+	for i in town_count:
+		var towni = town.instantiate()
+		var pos = Vector3(randf_range(MIN_X_T, MAX_X_T),0,randf_range(MIN_Z_T,MAX_Z_T))
+		var fnl_pos = pos
+		var rot = Vector3(0,randf_range(0,360),0)
+		add_child(towni)
+		print("town model should be in scene")
+		towni.global_transform.origin = fnl_pos
+#		towni.rotation_degrees = rot.y
+		town_loc = fnl_pos
+		print("Town Location: " + str(town_loc))
+		if not Engine.is_editor_hint():
+			TheDirector.next_town_location.append(town_loc)
+			print(TheDirector.next_town_location[0])
+			print(TheDirector.next_town_location.size())
+#		TheDirector.next_town_location = town_loc
 	pass
 
 func generate_terrain():
@@ -89,6 +122,13 @@ func generate_terrain():
 			var y = n.get_noise_2d(x,z)*5
 			var vertexs = Vector3(x,y,z)
 #			print("vertex:" + str(vertexs))
+			for i in town_loc:
+				var distance_to_position = town_loc.distance_to(vertexs)
+				print("vertex: "+str(vertexs))
+				print("distance: "+str(distance_to_position))
+				if distance_to_position < t_radius:
+					vertexs.y = 0
+				print("new vertex: " + str(vertexs))
 			var uv = Vector2()
 			uv.x = inverse_lerp(0,xSize,x)
 			uv.y = inverse_lerp(0,zSize,z)
@@ -99,6 +139,11 @@ func generate_terrain():
 				if zSize < 30:
 					draw_sphere(Vector3(x,y,z))
 			vert_count += 1
+			
+#		var distance_to_position = position.distance_to(vertex)
+#		if distance_to_position < radius:
+#			vertex.y = level
+#			mdt.set_vertex(i,vertex)
 	var vert = 0
 	for z in zSize:
 		for x in xSize:
@@ -170,6 +215,16 @@ func remove_footprint(obj):
 	footprint_objs[obj].queue_free()
 	footprint_objs.erase(obj)
 
+func report_to_the_director():
+	var town_report : int 
+	
+	for child in get_children():
+
+		town_report += 1
+		TheDirector.town_count += 1
+	
+	pass
+
 func _process(_delta):
 	#Terrain Code:
 	if update:
@@ -181,6 +236,7 @@ func _process(_delta):
 			clear_vert_vis = false
 
 	#Snow Code:
+
 	$SubViewport2/WorldRoot/Camera2D.position = Vector2(cam.global_position.x, cam.global_position.z) * pixel_per_unit 
 	var anchor_pos = cam.global_transform.origin
 	snow_material.set_shader_parameter("world_xy_anchor", Vector2(anchor_pos.x, anchor_pos.z))
@@ -188,3 +244,4 @@ func _process(_delta):
 		footprint_objs[obj].global_position = Vector2(obj.global_position.x, obj.global_position.z) * pixel_per_unit + Vector2(0.0,350)
 #		print("setting trail pos to ",footprint_objs[obj].position, "from object ", Vector2(obj.global_position.x, obj.global_position.y) * pixel_per_unit )
 	pass
+	

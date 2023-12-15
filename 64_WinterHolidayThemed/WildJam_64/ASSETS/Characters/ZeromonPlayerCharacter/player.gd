@@ -84,7 +84,7 @@ func _process(delta):
 			mesh_anim.play("Idle")
 	
 	camera_control()
-	#$Compass.look_at(TheDirector.next_town_location[0])
+	$Compass.look_at(TheDirector.next_town_location[0])
 #	print(str(TheDirector.next_town_location))
 	pass
 
