@@ -52,4 +52,4 @@ rim = 0.25
 heightmap_scale = -16.0
 heightmap_texture = SubResource("NoiseTexture2D_jt2yo")
 subsurf_scatter_enabled = true
-uv1_scale = Vector3(50, 50, 50)
+uv1_scale = Vector3(10, 10, 10)

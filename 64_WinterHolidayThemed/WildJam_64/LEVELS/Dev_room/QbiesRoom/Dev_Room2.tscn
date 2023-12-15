@@ -194,3 +194,4 @@ light_energy = 0.1
 [editable path="Geometry/Floor/SubViewport2/WorldRoot"]
 [editable path="Characters/Player"]
 [editable path="Characters/Player/PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader"]
+[editable path="Characters/Player/TheShadowInTheDark2"]

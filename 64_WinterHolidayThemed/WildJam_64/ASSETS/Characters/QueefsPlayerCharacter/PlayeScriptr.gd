@@ -41,6 +41,10 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+		var pos = self.global_position.y
+		var moveIt = Vector3((global_position.x-10),4, (global_position.z-10))
+		if pos <-5:
+			self.global_transform.origin = moveIt
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -54,7 +58,7 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * walk_speed
 		velocity.z = direction.z * walk_speed
-		rotation.y = atan2(-velocity.x,-velocity.z)
+#		rotation.y = atan2(-velocity.x,-velocity.z)
 	else:
 		velocity.x = move_toward(velocity.x, 0, walk_speed)
 		velocity.z = move_toward(velocity.z, 0, walk_speed)
@@ -76,8 +80,9 @@ func control_camera():
 	pass
 	
 func _process(delta):
+	pass
 	#When player's health is low, the CRT_Shader gets stronger
-	crt_shader.material.set_shader_parameter("crt_white_noise", 1.0 - (float(health) / float(healthmax)))
+	#crt_shader.material.set_shader_parameter("crt_white_noise", 1.0 - (float(health) / float(healthmax)))
 
 
 func hurt(damage):

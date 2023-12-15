@@ -45,7 +45,7 @@ func _ready():
 	
 	var pointer = pointer_path.instantiate()
 	
-	get_tree().get_root().add_child(cursor)
+	get_tree().get_root().add_child.call_deferred(cursor)
 	
 	for towns in TheDirector.town_count:
 		$Compass.add_child(pointer)
@@ -84,7 +84,7 @@ func _process(delta):
 			mesh_anim.play("Idle")
 	
 	camera_control()
-	$Compass.look_at(TheDirector.next_town_location[0])
+	#$Compass.look_at(TheDirector.next_town_location[0])
 #	print(str(TheDirector.next_town_location))
 	pass
 
@@ -93,7 +93,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+		
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY

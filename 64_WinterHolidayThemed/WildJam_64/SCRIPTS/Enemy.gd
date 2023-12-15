@@ -28,6 +28,7 @@ var suspicion : float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	await get_tree().process_frame
 	add_to_group("Enemy")
 	
 	#/equips weapon and armor
@@ -136,7 +137,7 @@ func _physics_process(delta):
 			suspicion -= 0.5
 	else:
 		suspicion -= 0.5
-	print(suspicion)
+	#print(suspicion)
 	
 	move_and_slide()
 	pass
@@ -176,23 +177,23 @@ func get_next_location():
 	
 	match state:
 		STATE.IDLE:
-			print("Knock it off, I'm busy")
+			#print("Knock it off, I'm busy")
 			navigation_agent_3d.target_position = self.global_transform.origin
 #			navigation_agent_3d.get_next_path_position()
 		STATE.PATROL:
-			print("I'm getting paid for this, right?")
+			#print("I'm getting paid for this, right?")
 			navigation_agent_3d.target_position = Vector3(randi_range(-5,5), randi_range(-5,5), randi_range(-5,5))
 #			navigation_agent_3d.get_next_path_position()
 		STATE.SUSPICIOUS:
-			print("dafuq is dat?")
+			#print("dafuq is dat?")
 			navigation_agent_3d.target_position = TheDirector.player_position_on_map
 #			navigation_agent_3d.get_next_path_position()
 		STATE.SCARED:
-			print("WHAT IS THAT THING, GET IT AWAY")
+			#print("WHAT IS THAT THING, GET IT AWAY")
 			runaway()
 #			navigation_agent_3d.get_next_path_position()
 		STATE.COMBAT:
-			print("SOUND THE ALARM")
+			#print("SOUND THE ALARM")
 			navigation_agent_3d.target_position = TheDirector.player_position_on_map
 #			navigation_agent_3d.get_next_path_position()
 			
