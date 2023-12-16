@@ -11,13 +11,21 @@ config_version=5
 [application]
 
 config/name="GodotWildJam_64"
-run/main_scene="res://WildJam_64/LEVELS/Main_Menu/Main_Menu.tscn"
+
+run/main_scene="res://WildJam_64/LEVELS/Dev_room/OnlysRoom/TestLevelProcGen.tscn"
+
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-TheDirector="*res://WildJam_64/SCRIPTS/TheDirector.gd"
+
+TheDirector="*res://WildJam_64/SCRIPTS/globals/TheDirector.gd"
+
+[display]
+
+
+
 
 [input]
 
@@ -85,7 +93,7 @@ Reload={
 }
 Cast={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":113,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":80,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 Throw={
@@ -93,9 +101,36 @@ Throw={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":88,"key_label":0,"unicode":120,"echo":false,"script":null)
 ]
 }
+secretButton={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":74,"key_label":0,"unicode":106,"echo":false,"script":null)
+]
+}
+Rotate_Left={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":113,"echo":false,"script":null)
+]
+}
+Rotate_Right={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"echo":false,"script":null)
+]
+}
+
+[layer_names]
+
+3d_render/layer_1="Player"
+3d_render/layer_2="Enemies"
+3d_render/layer_3="Toys"
+3d_render/layer_4="Enviroment"
+3d_physics/layer_1="Player"
+3d_physics/layer_2="Enemies"
+3d_physics/layer_3="Toys"
+3d_physics/layer_4="Enviroment"
 config/name="64 Winter Holiday Themed"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
 move_up={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194320,"key_label":0,"unicode":0,"echo":false,"script":null)
@@ -141,3 +176,9 @@ pause_game={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194308,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(1, 1, 1, 1)
+

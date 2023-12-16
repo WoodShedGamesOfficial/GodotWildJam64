@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b24l4775v84ym"
+path="res://.godot/imported/Blood Spill SFX.ogg-de9ce8cac1d2edf345be53316b6e733e.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Gore&Bones SFX/Blood Spill SFX.ogg"
+dest_files=["res://.godot/imported/Blood Spill SFX.ogg-de9ce8cac1d2edf345be53316b6e733e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

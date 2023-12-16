@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d0c10tmght8rf"
+path="res://.godot/imported/Trap and Break.ogg-0cc9ac76b7890b0350ef4269ab008c48.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Environment/Trap and Break.ogg"
+dest_files=["res://.godot/imported/Trap and Break.ogg-0cc9ac76b7890b0350ef4269ab008c48.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

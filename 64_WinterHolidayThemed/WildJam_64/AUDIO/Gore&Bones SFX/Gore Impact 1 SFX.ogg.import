@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://8yn5c3p6b1hr"
+path="res://.godot/imported/Gore Impact 1 SFX.ogg-60c5e6837738244368f5f988d1dd1bed.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Gore&Bones SFX/Gore Impact 1 SFX.ogg"
+dest_files=["res://.godot/imported/Gore Impact 1 SFX.ogg-60c5e6837738244368f5f988d1dd1bed.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

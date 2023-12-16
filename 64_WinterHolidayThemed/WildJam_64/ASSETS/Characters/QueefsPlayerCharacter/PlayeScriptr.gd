@@ -1,13 +1,15 @@
 extends CharacterBody3D
 
 
+@onready var crt_shader = $PlayerOrigin/WorldCam/PlayerGUI/CRT_Shader/Container
+
 @export var PLAYERSTATS = {
 	"Health" : 100,
-	"Mana" : 100.0,
-	"Stamina" : 100.0,
-	'WalkSpeed' : 4,
-	'SprintSpeed' : 12,
-	'SneakSpeed' : 2
+	"HealthMax" : 100,
+	"Mana" : 100,
+	"Stamina" : 100,
+	'WalkSpeed' : 20
+
 }
 
 @onready var health = PLAYERSTATS.Health
@@ -37,11 +39,20 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _ready():
+
 	$PlayerOrigin/WorldCam/PlayerGUI/HealthBar.value = health
 	$PlayerOrigin/WorldCam/PlayerGUI/ManaBar.value = mana
 	$PlayerOrigin/WorldCam/PlayerGUI/StaminaBar.value = stamina
 	pass
 	
+
+	add_to_group("Player")
+	
+	
+	pass
+
+
+
 func _input(event):
 	if InputEventMouseMotion:
 		control_camera() #/ takes player mouse input for camera control
@@ -55,6 +66,10 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+		var pos = self.global_position.y
+		var moveIt = Vector3((global_position.x-10),4, (global_position.z-10))
+		if pos <-5:
+			self.global_transform.origin = moveIt
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -77,6 +92,7 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * walk_speed
 		velocity.z = direction.z * walk_speed
+#		rotation.y = atan2(-velocity.x,-velocity.z)
 	else:
 		velocity.x = move_toward(velocity.x, 0, walk_speed)
 		velocity.z = move_toward(velocity.z, 0, walk_speed)
@@ -100,6 +116,7 @@ func control_camera():
 	pass
 	
 func _process(delta):
+
 	report_to_director()
 	#When player's health is low, the CRT_Shader gets stronger
 	
@@ -136,15 +153,6 @@ func set_player_stats(event):
 		health -= 5
 		mana -= 3
 		stamina -= 2
-	pass
-
-func hurt(damage):
-	health -= damage
-	#check if dead
-	if health >= 0:
-		die()
-		pass
-		
 	pass
 	
 func die():
@@ -200,4 +208,14 @@ func devour():
 	
 func jaunt():
 	self.position.z -= 1
+
+
+	pass
+	#When player's health is low, the CRT_Shader gets stronger
+	#crt_shader.material.set_shader_parameter("crt_white_noise", 1.0 - (float(health) / float(healthmax)))
+
+
+func hurt(damage):
+	health -= damage
+	pass
 

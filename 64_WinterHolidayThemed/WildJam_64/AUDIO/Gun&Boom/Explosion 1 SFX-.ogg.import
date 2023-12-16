@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dpokhp23hiy5f"
+path="res://.godot/imported/Explosion 1 SFX-.ogg-69bf3ca8837793a521967598f5eee886.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Gun&Boom/Explosion 1 SFX-.ogg"
+dest_files=["res://.godot/imported/Explosion 1 SFX-.ogg-69bf3ca8837793a521967598f5eee886.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

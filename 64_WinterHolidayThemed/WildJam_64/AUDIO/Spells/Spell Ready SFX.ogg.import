@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bbgjpk0edrbqt"
+path="res://.godot/imported/Spell Ready SFX.ogg-401491593636bed0cd557a62b542c23e.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Spells/Spell Ready SFX.ogg"
+dest_files=["res://.godot/imported/Spell Ready SFX.ogg-401491593636bed0cd557a62b542c23e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://blgevf8fj5dew"]
+
+[ext_resource type="Material" uid="uid://qn5x1yqjvpi7" path="res://WildJam_64/ASSETS/Enviromental/Materials/ShadowBlack.tres" id="1_dgu2i"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_h8k0j"]
+
+[node name="Pointer" type="MeshInstance3D"]
+transform = Transform3D(0.6, 0, 0, 0, -2.62268e-08, 0.3, 0, -0.6, -1.31134e-08, 0, 0, -2)
+material_override = ExtResource("1_dgu2i")
+mesh = SubResource("PrismMesh_h8k0j")
+skeleton = NodePath("../..")

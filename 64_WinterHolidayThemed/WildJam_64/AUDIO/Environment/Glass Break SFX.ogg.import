@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://3u0gdio771r2"
+path="res://.godot/imported/Glass Break SFX.ogg-4501ae09f88104e936856fa6089a2a1c.oggvorbisstr"
+
+[deps]
+
+source_file="res://WildJam_64/AUDIO/Environment/Glass Break SFX.ogg"
+dest_files=["res://.godot/imported/Glass Break SFX.ogg-4501ae09f88104e936856fa6089a2a1c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
