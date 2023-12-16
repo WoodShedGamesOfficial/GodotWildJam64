@@ -1,9 +1,19 @@
 [gd_scene load_steps=8 format=3 uid="uid://dqthql80cjsxs"]
 
+[ext_resource type="Script" path="res://WildJam_64/ASSETS/Characters/QueefsPlayerCharacter/PlayeScriptr.gd" id="1_tuyju"]
+[ext_resource type="PackedScene" uid="uid://ynqoixfohsfg" path="res://WildJam_64/LEVELS/Dev_room/JakesRoom/player_gui.tscn" id="2_esxbw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34wnd"]
+albedo_color = Color(0.219608, 1, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_i54pw"]
+material = SubResource("StandardMaterial3D_34wnd")
+
 [ext_resource type="Script" path="res://WildJam_64/ASSETS/Characters/ZeromonPlayerCharacter/player.gd" id="1_k8k6x"]
 [ext_resource type="PackedScene" uid="uid://3j23c47chjnm" path="res://WildJam_64/LEVELS/CRT Shader/crt_shader.tscn" id="2_vmudu"]
 [ext_resource type="PackedScene" uid="uid://cvnhbtty1ckp3" path="res://WildJam_64/ASSETS/Characters/TheShadowInTheDark/AnimatedShadow.tscn" id="3_i5gpu"]
 [ext_resource type="PackedScene" uid="uid://blgevf8fj5dew" path="res://WildJam_64/UNCUTASSETS/pointer.tscn" id="5_6c7ix"]
+
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bj0j4"]
 
@@ -15,8 +25,15 @@ material = SubResource("StandardMaterial3D_w7so5")
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+script = ExtResource("1_tuyju")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_i54pw")
+
 collision_mask = 9
 script = ExtResource("1_k8k6x")
+
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
@@ -37,6 +54,9 @@ transform = Transform3D(1, 0, 0, 0, 0.642787, 0.766045, 0, -0.766045, 0.642787, 
 cull_mask = 1047553
 current = true
 
+
+[node name="PlayerGUI" parent="PlayerOrigin/WorldCam" instance=ExtResource("2_esxbw")]
+
 [node name="PlayerGUI" type="Control" parent="PlayerOrigin/WorldCam"]
 layout_mode = 3
 anchors_preset = 0
@@ -56,6 +76,7 @@ render_target_update_mode = 4
 [node name="PlayerHUDCam" type="Camera3D" parent="PlayerOrigin/WorldCam/PlayerGUI/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 7.21784, 1.9285)
 cull_mask = 1047554
+
 
 [node name="CRT_Shader" parent="PlayerOrigin/WorldCam/PlayerGUI" instance=ExtResource("2_vmudu")]
 visible = false

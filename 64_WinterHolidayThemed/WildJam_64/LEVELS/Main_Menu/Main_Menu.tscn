@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=8 format=3 uid="uid://r2w46qikxe74"]
 
 [ext_resource type="Script" path="res://WildJam_64/LEVELS/Main_Menu/Main_Menu_Script.gd" id="1_cu2dk"]
@@ -65,6 +66,7 @@ _data = {
 "credits_scale": SubResource("Animation_qmn0g")
 }
 
+
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -124,6 +126,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Start"
 
+
 [node name="CREDITS" type="Button" parent="MenuContainer/MenuButtons"]
 layout_mode = 2
 text = "Credits
@@ -136,6 +139,7 @@ text = "Exit
 
 [node name="Thank you!" type="Label" parent="."]
 visible = false
+
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -148,6 +152,7 @@ offset_right = 157.5
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
+
 theme_override_colors/font_color = Color(0.482353, 0.65098, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
@@ -160,3 +165,4 @@ stream = ExtResource("4_cjln1")
 [connection signal="pressed" from="MenuContainer/MenuButtons/START" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtons/CREDITS" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtons/EXIT" to="." method="_on_exit_pressed"]
+
