@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqwlhwaucqrru"]
+[gd_scene load_steps=8 format=3 uid="uid://cqwlhwaucqrru"]
 
 [ext_resource type="Script" path="res://WildJam_64/SCRIPTS/Generator.gd" id="1_aa2xr"]
 [ext_resource type="PackedScene" uid="uid://dr1e1d6j23pvw" path="res://WildJam_64/ASSETS/Enviromental/Rocks/rock.res" id="2_be5fm"]
 [ext_resource type="PackedScene" uid="uid://dfttfshl5lcco" path="res://WildJam_64/ASSETS/Enviromental/Trees/tree.res" id="3_urhac"]
 [ext_resource type="PackedScene" uid="uid://pmjlwp3gnwas" path="res://WildJam_64/ASSETS/Enviromental/Town/TownBuilding.tscn" id="4_o0oor"]
 [ext_resource type="Material" uid="uid://do78hae5n2j2t" path="res://WildJam_64/ASSETS/Enviromental/Materials/TerrainSnow.tres" id="5_hriy4"]
+[ext_resource type="NavigationMesh" uid="uid://0yhe3gilhyr3" path="res://WildJam_64/LEVELS/Dev_room/OnlysRoom/new_nav_mesh.tres" id="6_7us5q"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1gxxe"]
 
@@ -12,10 +13,10 @@
 script = ExtResource("1_aa2xr")
 Seed = "george"
 rock = ExtResource("2_be5fm")
+rock_count = 100
 tree = ExtResource("3_urhac")
+tree_count = 100
 town = ExtResource("4_o0oor")
-world_size = 2000
-subdivisions = 40
 land_mat = ExtResource("5_hriy4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -25,6 +26,9 @@ collision_mask = 15
 [node name="Terrain" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("ArrayMesh_1gxxe")
 skeleton = NodePath("../..")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="StaticBody3D/Terrain"]
+navigation_mesh = ExtResource("6_7us5q")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.164807, 0.986326, 0, -0.986326, 0.164807, 0, 200, 0)

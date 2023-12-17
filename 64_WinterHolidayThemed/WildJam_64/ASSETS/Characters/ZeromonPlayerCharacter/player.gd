@@ -45,7 +45,7 @@ func _ready():
 	
 	var pointer = pointer_path.instantiate()
 	
-	get_tree().get_root().add_child(cursor)
+	get_tree().get_root().add_child.call_deferred(cursor)
 	
 	for towns in TheDirector.town_count:
 		$Compass.add_child(pointer)
@@ -83,17 +83,18 @@ func _process(delta):
 		if mesh_anim.is_playing() == false:
 			mesh_anim.play("Idle")
 	
-	camera_control()
+#	camera_control()
 	$Compass.look_at(TheDirector.next_town_location[0])
 #	print(str(TheDirector.next_town_location))
 	pass
 
 
 func _physics_process(delta):
+	camera_control()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+		
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -148,7 +149,7 @@ func camera_control():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = playercam.project_ray_origin(mouse_pos)
 	var to = from + playercam.project_ray_normal(mouse_pos) * ray_length
-	var cursor_pos = drop_plane.intersects_ray(from, to)
+	var cursor_pos = drop_plane.intersects_segment(from, to)
 #	print("Cursor - Player: " + str(cursor_pos - player_pos))
 	#/syntax
 	#world_cursor.global_transform.origin = cursor_pos + Vector3(0, 1, 0)
@@ -158,7 +159,12 @@ func camera_control():
 
 	cursor.transform.origin = cursor_pos + Vector3(0, 1, 0)
 #	player_mesh.look_at(cursor_pos, Vector3.UP)
+	var rot_speed = 0.02
 	
+	if Input.is_action_pressed("Rotate_Right"):
+		$PlayerOrigin.rotate_y(-rot_speed)
+	if Input.is_action_pressed("Rotate_Left"):
+		$PlayerOrigin.rotate_y(rot_speed)
 	
 	pass
 

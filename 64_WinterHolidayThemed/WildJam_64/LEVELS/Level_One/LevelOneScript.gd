@@ -6,7 +6,7 @@ extends Node3D
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 #	await (get_tree().create_timer(5.0).timeout)
-	$Geometry/NavigationRegion3D.bake_navigation_mesh()
+	#$Geometry/NavigationRegion3D.bake_navigation_mesh()
 	print("Ding, done baking")
 	pass
 

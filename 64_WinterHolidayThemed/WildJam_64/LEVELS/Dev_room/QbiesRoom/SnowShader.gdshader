@@ -88,8 +88,8 @@ void fragment() {
 	ALBEDO = textureLod(snow_color_gradient, vec2(height_factor +mix_noise_size * mix_noise_fac),0).rgb;
 	//ALBEDO = vec3(rotated_uv,1.0);
 	view_pos = VERTEX;
-//	SSS_STRENGTH = height_factor;
-//	SSS_TRANSMITTANCE_COLOR = scatter_tint;
+	SSS_STRENGTH = height_factor;
+	SSS_TRANSMITTANCE_COLOR = scatter_tint;
 //	SSS_TRANSMITTANCE_DEPTH = 0.3;
 //	SSS_TRANSMITTANCE_BOOST = 0.5;
 }
